@@ -36,8 +36,8 @@ double randomDouble()
 
 int nplanets;
 int timesteps;
-double dt;
-double G;
+constexpr double dt = 0.001;
+constexpr double G = 6.6743;
 
 Planet* next(Planet* planets) {
    Planet* nextplanets = (Planet*)malloc(sizeof(Planet) * nplanets);
@@ -73,8 +73,6 @@ int main(int argc, const char** argv){
    }
    nplanets = atoi(argv[1]);
    timesteps = atoi(argv[2]);
-   dt = 0.001;
-   G = 6.6743;
 
    Planet* planets = (Planet*)malloc(sizeof(Planet) * nplanets);
    for (int i=0; i<nplanets; i++) {
