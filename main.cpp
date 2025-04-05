@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
+#include <cstring>
 
 #include <sys/time.h>
 
@@ -39,16 +40,16 @@ int timesteps;
 constexpr double dt = 0.001;
 constexpr double G = 6.6743;
 
-Planet* next(Planet* planets) {
-   Planet* nextplanets = (Planet*)malloc(sizeof(Planet) * nplanets);
-   for (int i=0; i<nplanets; i++) {
-      nextplanets[i].vx = planets[i].vx;
-      nextplanets[i].vy = planets[i].vy;
-      nextplanets[i].mass = planets[i].mass;
-      nextplanets[i].x = planets[i].x;
-      nextplanets[i].y = planets[i].y;
-   }
-
+void next(Planet * __restrict__ planets, Planet * __restrict__ nextplanets) {
+   // for (int i=0; i<nplanets; i++) {
+   //    nextplanets[i].vx = planets[i].vx;
+   //    nextplanets[i].vy = planets[i].vy;
+   //    nextplanets[i].mass = planets[i].mass;
+   //    nextplanets[i].x = planets[i].x;
+   //    nextplanets[i].y = planets[i].y;
+   // }
+   std::memcpy(nextplanets, planets, sizeof(Planet) * nplanets);
+   
    for (int i=0; i<nplanets; i++) {
       for (int j=0; j<nplanets; j++) {
          double dx = planets[j].x - planets[i].x;
@@ -59,11 +60,12 @@ Planet* next(Planet* planets) {
          nextplanets[i].vx += dt * dx * invDist3;
          nextplanets[i].vy += dt * dy * invDist3;
       }
+   }
+
+   for (int i = 0; i < nplanets; ++i) {
       nextplanets[i].x += dt * nextplanets[i].vx;
       nextplanets[i].y += dt * nextplanets[i].vy;
    }
-   free(planets);
-   return nextplanets;
 }
 
 int main(int argc, const char** argv){
@@ -75,6 +77,7 @@ int main(int argc, const char** argv){
    timesteps = atoi(argv[2]);
 
    Planet* planets = (Planet*)malloc(sizeof(Planet) * nplanets);
+   Planet* nextplanets = (Planet*)malloc(sizeof(Planet) * nplanets);
    for (int i=0; i<nplanets; i++) {
       planets[i].mass = randomDouble() * 10 + 0.2;
       planets[i].x = ( randomDouble() - 0.5 ) * 100 * pow(1 + nplanets, 0.4);
@@ -86,7 +89,8 @@ int main(int argc, const char** argv){
    struct timeval start, end;
    gettimeofday(&start, NULL);
    for (int i=0; i<timesteps; i++) {
-      planets = next(planets);
+      next(planets, nextplanets);
+      std::swap(planets, nextplanets);
       // printf("x=%f y=%f vx=%f vy=%f\n", planets[nplanets-1].x, planets[nplanets-1].y, planets[nplanets-1].vx, planets[nplanets-1].vy);
    }
    gettimeofday(&end, NULL);
