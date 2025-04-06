@@ -4,755 +4,968 @@ main.exe:     file format elf64-x86-64
 
 Disassembly of section .text:
 
-0000000000001930 <_start>:
-    1930:	f3 0f 1e fa          	endbr64 
-    1934:	31 ed                	xor    %ebp,%ebp
-    1936:	49 89 d1             	mov    %rdx,%r9
-    1939:	5e                   	pop    %rsi
-    193a:	48 89 e2             	mov    %rsp,%rdx
-    193d:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp
-    1941:	50                   	push   %rax
-    1942:	54                   	push   %rsp
-    1943:	4c 8d 05 a6 07 00 00 	lea    0x7a6(%rip),%r8        # 20f0 <__libc_csu_fini>
-    194a:	48 8d 0d 2f 07 00 00 	lea    0x72f(%rip),%rcx        # 2080 <__libc_csu_init>
-    1951:	48 8d 3d d8 02 00 00 	lea    0x2d8(%rip),%rdi        # 1c30 <main>
-    1958:	ff 15 12 1a 00 00    	callq  *0x1a12(%rip)        # 3370 <__libc_start_main@GLIBC_2.2.5>
-    195e:	f4                   	hlt    
-    195f:	cc                   	int3   
+0000000000001b20 <_start>:
+    1b20:	f3 0f 1e fa          	endbr64 
+    1b24:	31 ed                	xor    %ebp,%ebp
+    1b26:	49 89 d1             	mov    %rdx,%r9
+    1b29:	5e                   	pop    %rsi
+    1b2a:	48 89 e2             	mov    %rsp,%rdx
+    1b2d:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp
+    1b31:	50                   	push   %rax
+    1b32:	54                   	push   %rsp
+    1b33:	4c 8d 05 36 0a 00 00 	lea    0xa36(%rip),%r8        # 2570 <__libc_csu_fini>
+    1b3a:	48 8d 0d bf 09 00 00 	lea    0x9bf(%rip),%rcx        # 2500 <__libc_csu_init>
+    1b41:	48 8d 3d 88 04 00 00 	lea    0x488(%rip),%rdi        # 1fd0 <main>
+    1b48:	ff 15 2a 1d 00 00    	callq  *0x1d2a(%rip)        # 3878 <__libc_start_main@GLIBC_2.2.5>
+    1b4e:	f4                   	hlt    
+    1b4f:	cc                   	int3   
 
-0000000000001960 <deregister_tm_clones>:
-    1960:	48 8d 3d 49 2a 00 00 	lea    0x2a49(%rip),%rdi        # 43b0 <__TMC_END__>
-    1967:	48 8d 05 42 2a 00 00 	lea    0x2a42(%rip),%rax        # 43b0 <__TMC_END__>
-    196e:	48 39 f8             	cmp    %rdi,%rax
-    1971:	74 15                	je     1988 <deregister_tm_clones+0x28>
-    1973:	48 8b 05 06 1a 00 00 	mov    0x1a06(%rip),%rax        # 3380 <_ITM_deregisterTMCloneTable@Base>
-    197a:	48 85 c0             	test   %rax,%rax
-    197d:	74 09                	je     1988 <deregister_tm_clones+0x28>
-    197f:	ff e0                	jmpq   *%rax
-    1981:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-    1988:	c3                   	retq   
-    1989:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+0000000000001b50 <deregister_tm_clones>:
+    1b50:	48 8d 3d 61 2d 00 00 	lea    0x2d61(%rip),%rdi        # 48b8 <__TMC_END__>
+    1b57:	48 8d 05 5a 2d 00 00 	lea    0x2d5a(%rip),%rax        # 48b8 <__TMC_END__>
+    1b5e:	48 39 f8             	cmp    %rdi,%rax
+    1b61:	74 15                	je     1b78 <deregister_tm_clones+0x28>
+    1b63:	48 8b 05 1e 1d 00 00 	mov    0x1d1e(%rip),%rax        # 3888 <_ITM_deregisterTMCloneTable@Base>
+    1b6a:	48 85 c0             	test   %rax,%rax
+    1b6d:	74 09                	je     1b78 <deregister_tm_clones+0x28>
+    1b6f:	ff e0                	jmpq   *%rax
+    1b71:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+    1b78:	c3                   	retq   
+    1b79:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
 
-0000000000001990 <register_tm_clones>:
-    1990:	48 8d 3d 19 2a 00 00 	lea    0x2a19(%rip),%rdi        # 43b0 <__TMC_END__>
-    1997:	48 8d 35 12 2a 00 00 	lea    0x2a12(%rip),%rsi        # 43b0 <__TMC_END__>
-    199e:	48 29 fe             	sub    %rdi,%rsi
-    19a1:	48 89 f0             	mov    %rsi,%rax
-    19a4:	48 c1 ee 3f          	shr    $0x3f,%rsi
-    19a8:	48 c1 f8 03          	sar    $0x3,%rax
-    19ac:	48 01 c6             	add    %rax,%rsi
-    19af:	48 d1 fe             	sar    %rsi
-    19b2:	74 14                	je     19c8 <register_tm_clones+0x38>
-    19b4:	48 8b 05 cd 19 00 00 	mov    0x19cd(%rip),%rax        # 3388 <_ITM_registerTMCloneTable@Base>
-    19bb:	48 85 c0             	test   %rax,%rax
-    19be:	74 08                	je     19c8 <register_tm_clones+0x38>
-    19c0:	ff e0                	jmpq   *%rax
-    19c2:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
-    19c8:	c3                   	retq   
-    19c9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+0000000000001b80 <register_tm_clones>:
+    1b80:	48 8d 3d 31 2d 00 00 	lea    0x2d31(%rip),%rdi        # 48b8 <__TMC_END__>
+    1b87:	48 8d 35 2a 2d 00 00 	lea    0x2d2a(%rip),%rsi        # 48b8 <__TMC_END__>
+    1b8e:	48 29 fe             	sub    %rdi,%rsi
+    1b91:	48 89 f0             	mov    %rsi,%rax
+    1b94:	48 c1 ee 3f          	shr    $0x3f,%rsi
+    1b98:	48 c1 f8 03          	sar    $0x3,%rax
+    1b9c:	48 01 c6             	add    %rax,%rsi
+    1b9f:	48 d1 fe             	sar    %rsi
+    1ba2:	74 14                	je     1bb8 <register_tm_clones+0x38>
+    1ba4:	48 8b 05 e5 1c 00 00 	mov    0x1ce5(%rip),%rax        # 3890 <_ITM_registerTMCloneTable@Base>
+    1bab:	48 85 c0             	test   %rax,%rax
+    1bae:	74 08                	je     1bb8 <register_tm_clones+0x38>
+    1bb0:	ff e0                	jmpq   *%rax
+    1bb2:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+    1bb8:	c3                   	retq   
+    1bb9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
 
-00000000000019d0 <__do_global_dtors_aux>:
-    19d0:	f3 0f 1e fa          	endbr64 
-    19d4:	80 3d 1d 2a 00 00 00 	cmpb   $0x0,0x2a1d(%rip)        # 43f8 <completed.0>
-    19db:	75 2b                	jne    1a08 <__do_global_dtors_aux+0x38>
-    19dd:	55                   	push   %rbp
-    19de:	48 83 3d aa 19 00 00 	cmpq   $0x0,0x19aa(%rip)        # 3390 <__cxa_finalize@GLIBC_2.2.5>
-    19e5:	00 
-    19e6:	48 89 e5             	mov    %rsp,%rbp
-    19e9:	74 0c                	je     19f7 <__do_global_dtors_aux+0x27>
-    19eb:	48 8b 3d ae 29 00 00 	mov    0x29ae(%rip),%rdi        # 43a0 <__dso_handle>
-    19f2:	e8 49 07 00 00       	callq  2140 <__cxa_finalize@plt>
-    19f7:	e8 64 ff ff ff       	callq  1960 <deregister_tm_clones>
-    19fc:	c6 05 f5 29 00 00 01 	movb   $0x1,0x29f5(%rip)        # 43f8 <completed.0>
-    1a03:	5d                   	pop    %rbp
-    1a04:	c3                   	retq   
-    1a05:	0f 1f 00             	nopl   (%rax)
-    1a08:	c3                   	retq   
-    1a09:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+0000000000001bc0 <__do_global_dtors_aux>:
+    1bc0:	f3 0f 1e fa          	endbr64 
+    1bc4:	80 3d 55 2d 00 00 00 	cmpb   $0x0,0x2d55(%rip)        # 4920 <completed.0>
+    1bcb:	75 2b                	jne    1bf8 <__do_global_dtors_aux+0x38>
+    1bcd:	55                   	push   %rbp
+    1bce:	48 83 3d c2 1c 00 00 	cmpq   $0x0,0x1cc2(%rip)        # 3898 <__cxa_finalize@GLIBC_2.2.5>
+    1bd5:	00 
+    1bd6:	48 89 e5             	mov    %rsp,%rbp
+    1bd9:	74 0c                	je     1be7 <__do_global_dtors_aux+0x27>
+    1bdb:	48 8b 3d c6 2c 00 00 	mov    0x2cc6(%rip),%rdi        # 48a8 <__dso_handle>
+    1be2:	e8 d9 09 00 00       	callq  25c0 <__cxa_finalize@plt>
+    1be7:	e8 64 ff ff ff       	callq  1b50 <deregister_tm_clones>
+    1bec:	c6 05 2d 2d 00 00 01 	movb   $0x1,0x2d2d(%rip)        # 4920 <completed.0>
+    1bf3:	5d                   	pop    %rbp
+    1bf4:	c3                   	retq   
+    1bf5:	0f 1f 00             	nopl   (%rax)
+    1bf8:	c3                   	retq   
+    1bf9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
 
-0000000000001a10 <frame_dummy>:
-    1a10:	f3 0f 1e fa          	endbr64 
-    1a14:	e9 77 ff ff ff       	jmpq   1990 <register_tm_clones>
-    1a19:	cc                   	int3   
-    1a1a:	cc                   	int3   
-    1a1b:	cc                   	int3   
-    1a1c:	cc                   	int3   
-    1a1d:	cc                   	int3   
-    1a1e:	cc                   	int3   
-    1a1f:	cc                   	int3   
+0000000000001c00 <frame_dummy>:
+    1c00:	f3 0f 1e fa          	endbr64 
+    1c04:	e9 77 ff ff ff       	jmpq   1b80 <register_tm_clones>
+    1c09:	cc                   	int3   
+    1c0a:	cc                   	int3   
+    1c0b:	cc                   	int3   
+    1c0c:	cc                   	int3   
+    1c0d:	cc                   	int3   
+    1c0e:	cc                   	int3   
+    1c0f:	cc                   	int3   
 
-0000000000001a20 <_Z5tdiffP7timevalS0_>:
-#include<math.h>
+0000000000001c10 <_Z5tdiffP7timevalS0_>:
+#include <cstring>
 
 #include <sys/time.h>
 
 float tdiff(struct timeval *start, struct timeval *end) {
   return (end->tv_sec-start->tv_sec) + 1e-6*(end->tv_usec-start->tv_usec);
-    1a20:	48 8b 06             	mov    (%rsi),%rax
-    1a23:	48 8b 4e 08          	mov    0x8(%rsi),%rcx
-    1a27:	48 2b 07             	sub    (%rdi),%rax
-    1a2a:	f2 48 0f 2a c0       	cvtsi2sd %rax,%xmm0
-    1a2f:	48 2b 4f 08          	sub    0x8(%rdi),%rcx
-    1a33:	f2 48 0f 2a c9       	cvtsi2sd %rcx,%xmm1
-    1a38:	f2 0f 59 0d 70 ec ff 	mulsd  -0x1390(%rip),%xmm1        # 6b0 <_IO_stdin_used+0x10>
-    1a3f:	ff 
-    1a40:	f2 0f 58 c8          	addsd  %xmm0,%xmm1
-    1a44:	0f 57 c0             	xorps  %xmm0,%xmm0
-    1a47:	f2 0f 5a c1          	cvtsd2ss %xmm1,%xmm0
-    1a4b:	c3                   	retq   
-    1a4c:	0f 1f 40 00          	nopl   0x0(%rax)
+    1c10:	48 8b 06             	mov    (%rsi),%rax
+    1c13:	48 8b 4e 08          	mov    0x8(%rsi),%rcx
+    1c17:	48 2b 07             	sub    (%rdi),%rax
+    1c1a:	f2 48 0f 2a c0       	cvtsi2sd %rax,%xmm0
+    1c1f:	48 2b 4f 08          	sub    0x8(%rdi),%rcx
+    1c23:	f2 48 0f 2a c9       	cvtsi2sd %rcx,%xmm1
+    1c28:	f2 0f 59 0d 10 ec ff 	mulsd  -0x13f0(%rip),%xmm1        # 840 <_IO_stdin_used+0x10>
+    1c2f:	ff 
+    1c30:	f2 0f 58 c8          	addsd  %xmm0,%xmm1
+    1c34:	0f 57 c0             	xorps  %xmm0,%xmm0
+    1c37:	f2 0f 5a c1          	cvtsd2ss %xmm1,%xmm0
+    1c3b:	c3                   	retq   
+    1c3c:	0f 1f 40 00          	nopl   0x0(%rax)
 
-0000000000001a50 <_Z9randomU64v>:
+0000000000001c40 <_Z9randomU64v>:
 };
 
 unsigned long long seed = 100;
 
 unsigned long long randomU64() {
   seed ^= (seed << 21);
-    1a50:	48 8b 05 51 29 00 00 	mov    0x2951(%rip),%rax        # 43a8 <seed>
-    1a57:	48 89 c1             	mov    %rax,%rcx
-    1a5a:	48 c1 e1 15          	shl    $0x15,%rcx
-    1a5e:	48 31 c1             	xor    %rax,%rcx
+    1c40:	48 8b 05 69 2c 00 00 	mov    0x2c69(%rip),%rax        # 48b0 <seed>
+    1c47:	48 89 c1             	mov    %rax,%rcx
+    1c4a:	48 c1 e1 15          	shl    $0x15,%rcx
+    1c4e:	48 31 c1             	xor    %rax,%rcx
   seed ^= (seed >> 35);
-    1a61:	48 89 ca             	mov    %rcx,%rdx
-    1a64:	48 c1 ea 23          	shr    $0x23,%rdx
-    1a68:	48 31 ca             	xor    %rcx,%rdx
+    1c51:	48 89 ca             	mov    %rcx,%rdx
+    1c54:	48 c1 ea 23          	shr    $0x23,%rdx
+    1c58:	48 31 ca             	xor    %rcx,%rdx
   seed ^= (seed << 4);
-    1a6b:	48 89 d0             	mov    %rdx,%rax
-    1a6e:	48 c1 e0 04          	shl    $0x4,%rax
-    1a72:	48 31 d0             	xor    %rdx,%rax
-    1a75:	48 89 05 2c 29 00 00 	mov    %rax,0x292c(%rip)        # 43a8 <seed>
+    1c5b:	48 89 d0             	mov    %rdx,%rax
+    1c5e:	48 c1 e0 04          	shl    $0x4,%rax
+    1c62:	48 31 d0             	xor    %rdx,%rax
+    1c65:	48 89 05 44 2c 00 00 	mov    %rax,0x2c44(%rip)        # 48b0 <seed>
   return seed;
-    1a7c:	c3                   	retq   
-    1a7d:	0f 1f 00             	nopl   (%rax)
+    1c6c:	c3                   	retq   
+    1c6d:	0f 1f 00             	nopl   (%rax)
 
-0000000000001a80 <_Z12randomDoublev>:
+0000000000001c70 <_Z12randomDoublev>:
   seed ^= (seed << 21);
-    1a80:	48 8b 05 21 29 00 00 	mov    0x2921(%rip),%rax        # 43a8 <seed>
-    1a87:	48 89 c1             	mov    %rax,%rcx
-    1a8a:	48 c1 e1 15          	shl    $0x15,%rcx
-    1a8e:	48 31 c1             	xor    %rax,%rcx
+    1c70:	48 8b 05 39 2c 00 00 	mov    0x2c39(%rip),%rax        # 48b0 <seed>
+    1c77:	48 89 c1             	mov    %rax,%rcx
+    1c7a:	48 c1 e1 15          	shl    $0x15,%rcx
+    1c7e:	48 31 c1             	xor    %rax,%rcx
   seed ^= (seed >> 35);
-    1a91:	48 89 c8             	mov    %rcx,%rax
-    1a94:	48 c1 e8 23          	shr    $0x23,%rax
-    1a98:	48 31 c8             	xor    %rcx,%rax
+    1c81:	48 89 c8             	mov    %rcx,%rax
+    1c84:	48 c1 e8 23          	shr    $0x23,%rax
+    1c88:	48 31 c8             	xor    %rcx,%rax
   seed ^= (seed << 4);
-    1a9b:	48 89 c1             	mov    %rax,%rcx
-    1a9e:	48 c1 e1 04          	shl    $0x4,%rcx
-    1aa2:	48 31 c1             	xor    %rax,%rcx
+    1c8b:	48 89 c1             	mov    %rax,%rcx
+    1c8e:	48 c1 e1 04          	shl    $0x4,%rcx
+    1c92:	48 31 c1             	xor    %rax,%rcx
   seed ^= (seed << 21);
-    1aa5:	48 89 c8             	mov    %rcx,%rax
-    1aa8:	48 c1 e0 15          	shl    $0x15,%rax
-    1aac:	48 31 c8             	xor    %rcx,%rax
+    1c95:	48 89 c8             	mov    %rcx,%rax
+    1c98:	48 c1 e0 15          	shl    $0x15,%rax
+    1c9c:	48 31 c8             	xor    %rcx,%rax
   seed ^= (seed >> 35);
-    1aaf:	48 89 c2             	mov    %rax,%rdx
-    1ab2:	48 c1 ea 23          	shr    $0x23,%rdx
-    1ab6:	48 31 c2             	xor    %rax,%rdx
+    1c9f:	48 89 c2             	mov    %rax,%rdx
+    1ca2:	48 c1 ea 23          	shr    $0x23,%rdx
+    1ca6:	48 31 c2             	xor    %rax,%rdx
   seed ^= (seed << 4);
-    1ab9:	48 89 d0             	mov    %rdx,%rax
-    1abc:	48 c1 e0 04          	shl    $0x4,%rax
-    1ac0:	48 31 d0             	xor    %rdx,%rax
-    1ac3:	48 89 05 de 28 00 00 	mov    %rax,0x28de(%rip)        # 43a8 <seed>
+    1ca9:	48 89 d0             	mov    %rdx,%rax
+    1cac:	48 c1 e0 04          	shl    $0x4,%rax
+    1cb0:	48 31 d0             	xor    %rdx,%rax
+    1cb3:	48 89 05 f6 2b 00 00 	mov    %rax,0x2bf6(%rip)        # 48b0 <seed>
 double randomDouble()
 {
    unsigned long long next = randomU64();
    next >>= (64 - 26);
    unsigned long long next2 = randomU64();
    next2 >>= (64 - 26);
-    1aca:	48 c1 e8 26          	shr    $0x26,%rax
+    1cba:	48 c1 e8 26          	shr    $0x26,%rax
    return ((next << 27) + next2) / (double)(1LL << 53);
-    1ace:	48 c1 e9 0b          	shr    $0xb,%rcx
-    1ad2:	48 81 e1 00 00 00 f8 	and    $0xfffffffff8000000,%rcx
-    1ad9:	48 09 c1             	or     %rax,%rcx
-    1adc:	f2 48 0f 2a c1       	cvtsi2sd %rcx,%xmm0
-    1ae1:	f2 0f 59 05 cf eb ff 	mulsd  -0x1431(%rip),%xmm0        # 6b8 <_IO_stdin_used+0x18>
-    1ae8:	ff 
-    1ae9:	c3                   	retq   
-    1aea:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+    1cbe:	48 c1 e9 0b          	shr    $0xb,%rcx
+    1cc2:	48 81 e1 00 00 00 f8 	and    $0xfffffffff8000000,%rcx
+    1cc9:	48 09 c1             	or     %rax,%rcx
+    1ccc:	f2 48 0f 2a c1       	cvtsi2sd %rcx,%xmm0
+    1cd1:	f2 0f 59 05 6f eb ff 	mulsd  -0x1491(%rip),%xmm0        # 848 <_IO_stdin_used+0x18>
+    1cd8:	ff 
+    1cd9:	c3                   	retq   
+    1cda:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
 
-0000000000001af0 <_Z4nextP6PlanetS0_>:
+0000000000001ce0 <_Z4nextP6PlanetS0_>:
 int nplanets;
 int timesteps;
 constexpr double dt = 0.001;
 constexpr double G = 6.6743;
 
 void next(Planet * __restrict__ planets, Planet * __restrict__ nextplanets) {
-    1af0:	8b 05 06 29 00 00    	mov    0x2906(%rip),%eax        # 43fc <nplanets>
-   for (int i=0; i<nplanets; i++) {
-    1af6:	85 c0                	test   %eax,%eax
-    1af8:	0f 8e 23 01 00 00    	jle    1c21 <_Z4nextP6PlanetS0_+0x131>
-    1afe:	48 8d 0c c5 00 00 00 	lea    0x0(,%rax,8),%rcx
-    1b05:	00 
-    1b06:	48 8d 0c 89          	lea    (%rcx,%rcx,4),%rcx
-    1b0a:	31 d2                	xor    %edx,%edx
-    1b0c:	0f 1f 40 00          	nopl   0x0(%rax)
-      nextplanets[i].vx = planets[i].vx;
-      nextplanets[i].vy = planets[i].vy;
-    1b10:	f2 0f 10 44 17 20    	movsd  0x20(%rdi,%rdx,1),%xmm0
-    1b16:	f2 0f 11 44 16 20    	movsd  %xmm0,0x20(%rsi,%rdx,1)
-      nextplanets[i].mass = planets[i].mass;
-    1b1c:	0f 10 04 17          	movups (%rdi,%rdx,1),%xmm0
-    1b20:	0f 11 04 16          	movups %xmm0,(%rsi,%rdx,1)
-      nextplanets[i].x = planets[i].x;
-      nextplanets[i].y = planets[i].y;
-    1b24:	66 0f 10 44 17 10    	movupd 0x10(%rdi,%rdx,1),%xmm0
-    1b2a:	66 0f 11 44 16 10    	movupd %xmm0,0x10(%rsi,%rdx,1)
-   for (int i=0; i<nplanets; i++) {
-    1b30:	48 83 c2 28          	add    $0x28,%rdx
-    1b34:	48 39 d1             	cmp    %rdx,%rcx
-    1b37:	75 d7                	jne    1b10 <_Z4nextP6PlanetS0_+0x20>
-    1b39:	85 c0                	test   %eax,%eax
-   }
+    1ce0:	48 83 ec 18          	sub    $0x18,%rsp
+    1ce4:	48 89 f8             	mov    %rdi,%rax
+    1ce7:	48 89 7c 24 10       	mov    %rdi,0x10(%rsp)
+    1cec:	48 89 74 24 08       	mov    %rsi,0x8(%rsp)
+   //    nextplanets[i].vy = planets[i].vy;
+   //    nextplanets[i].mass = planets[i].mass;
+   //    nextplanets[i].x = planets[i].x;
+   //    nextplanets[i].y = planets[i].y;
+   // }
+   std::memcpy(nextplanets, planets, sizeof(Planet) * nplanets);
+    1cf1:	48 63 0d 2c 2c 00 00 	movslq 0x2c2c(%rip),%rcx        # 4924 <nplanets>
+    1cf8:	48 c1 e1 03          	shl    $0x3,%rcx
+    1cfc:	48 8d 14 89          	lea    (%rcx,%rcx,4),%rdx
+    1d00:	48 89 f7             	mov    %rsi,%rdi
+    1d03:	48 89 c6             	mov    %rax,%rsi
+    1d06:	e8 c5 08 00 00       	callq  25d0 <memcpy@plt>
 
-   for (int i=0; i<nplanets; i++) {
-    1b3b:	0f 8e e0 00 00 00    	jle    1c21 <_Z4nextP6PlanetS0_+0x131>
-    1b41:	31 d2                	xor    %edx,%edx
-    1b43:	f2 0f 10 05 85 eb ff 	movsd  -0x147b(%rip),%xmm0        # 6d0 <_IO_stdin_used+0x30>
-    1b4a:	ff 
-    1b4b:	66 0f 28 0d cd eb ff 	movapd -0x1433(%rip),%xmm1        # 720 <_IO_stdin_used+0x80>
-    1b52:	ff 
-    1b53:	66 66 66 66 2e 0f 1f 	data16 data16 data16 nopw %cs:0x0(%rax,%rax,1)
-    1b5a:	84 00 00 00 00 00 
-    1b60:	4c 8d 04 d5 00 00 00 	lea    0x0(,%rdx,8),%r8
-    1b67:	00 
-    1b68:	4f 8d 0c 80          	lea    (%r8,%r8,4),%r9
-    1b6c:	f2 42 0f 10 1c 0f    	movsd  (%rdi,%r9,1),%xmm3
-    1b72:	4e 8d 04 0e          	lea    (%rsi,%r9,1),%r8
-    1b76:	49 83 c0 18          	add    $0x18,%r8
-    1b7a:	66 42 0f 10 64 0f 08 	movupd 0x8(%rdi,%r9,1),%xmm4
-    1b81:	66 42 0f 10 54 0e 18 	movupd 0x18(%rsi,%r9,1),%xmm2
-    1b88:	45 31 c9             	xor    %r9d,%r9d
-    1b8b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
-      for (int j=0; j<nplanets; j++) {
-         double dx = planets[j].x - planets[i].x;
-    1b90:	66 42 0f 10 6c 0f 08 	movupd 0x8(%rdi,%r9,1),%xmm5
-    1b97:	f2 42 0f 10 34 0f    	movsd  (%rdi,%r9,1),%xmm6
-    1b9d:	66 0f 5c ec          	subpd  %xmm4,%xmm5
-         double dy = planets[j].y - planets[i].y;
-         double distSqr = dx*dx + dy*dy + 0.0001;
-    1ba1:	66 0f 28 fd          	movapd %xmm5,%xmm7
-    1ba5:	66 0f 59 fd          	mulpd  %xmm5,%xmm7
-    1ba9:	66 0f 15 ff          	unpckhpd %xmm7,%xmm7
-    1bad:	66 44 0f 28 c5       	movapd %xmm5,%xmm8
-    1bb2:	f2 44 0f 59 c5       	mulsd  %xmm5,%xmm8
-    1bb7:	f2 44 0f 58 c7       	addsd  %xmm7,%xmm8
-         double invDist = planets[i].mass * planets[j].mass / sqrt(distSqr);
-    1bbc:	f2 0f 59 f3          	mulsd  %xmm3,%xmm6
-         double distSqr = dx*dx + dy*dy + 0.0001;
-    1bc0:	f2 44 0f 58 c0       	addsd  %xmm0,%xmm8
-         double invDist = planets[i].mass * planets[j].mass / sqrt(distSqr);
-    1bc5:	0f 57 ff             	xorps  %xmm7,%xmm7
-    1bc8:	f2 41 0f 51 f8       	sqrtsd %xmm8,%xmm7
-    1bcd:	f2 0f 5e f7          	divsd  %xmm7,%xmm6
-         double invDist3 = invDist * invDist * invDist;
-    1bd1:	66 0f 28 fe          	movapd %xmm6,%xmm7
-    1bd5:	f2 0f 59 fe          	mulsd  %xmm6,%xmm7
-    1bd9:	f2 0f 59 fe          	mulsd  %xmm6,%xmm7
+   #pragma omp parallel for schedule(dynamic)
+    1d0b:	48 8d 3d 5e 19 00 00 	lea    0x195e(%rip),%rdi        # 3670 <__init_array_end>
+    1d12:	48 8d 15 c7 00 00 00 	lea    0xc7(%rip),%rdx        # 1de0 <_Z4nextP6PlanetS0_.omp_outlined>
+    1d19:	48 8d 4c 24 10       	lea    0x10(%rsp),%rcx
+    1d1e:	4c 8d 44 24 08       	lea    0x8(%rsp),%r8
+    1d23:	be 02 00 00 00       	mov    $0x2,%esi
+    1d28:	31 c0                	xor    %eax,%eax
+    1d2a:	e8 b1 08 00 00       	callq  25e0 <__kmpc_fork_call@plt>
+    1d2f:	8b 0d ef 2b 00 00    	mov    0x2bef(%rip),%ecx        # 4924 <nplanets>
          nextplanets[i].vx += dt * dx * invDist3;
-    1bdd:	66 0f 59 e9          	mulpd  %xmm1,%xmm5
-    1be1:	66 0f 14 ff          	unpcklpd %xmm7,%xmm7
-    1be5:	66 0f 59 fd          	mulpd  %xmm5,%xmm7
-    1be9:	66 0f 58 d7          	addpd  %xmm7,%xmm2
-      for (int j=0; j<nplanets; j++) {
-    1bed:	49 83 c1 28          	add    $0x28,%r9
-    1bf1:	4c 39 c9             	cmp    %r9,%rcx
-    1bf4:	75 9a                	jne    1b90 <_Z4nextP6PlanetS0_+0xa0>
-         nextplanets[i].vx += dt * dx * invDist3;
-    1bf6:	66 41 0f 11 10       	movupd %xmm2,(%r8)
          nextplanets[i].vy += dt * dy * invDist3;
       }
+   }
+
+   for (int i = 0; i < nplanets; ++i) {
+    1d35:	85 c9                	test   %ecx,%ecx
+    1d37:	0f 8e 93 00 00 00    	jle    1dd0 <_Z4nextP6PlanetS0_+0xf0>
+    1d3d:	48 8b 44 24 08       	mov    0x8(%rsp),%rax
+    1d42:	83 f9 01             	cmp    $0x1,%ecx
+    1d45:	75 04                	jne    1d4b <_Z4nextP6PlanetS0_+0x6b>
+    1d47:	31 d2                	xor    %edx,%edx
+    1d49:	eb 5e                	jmp    1da9 <_Z4nextP6PlanetS0_+0xc9>
+    1d4b:	89 ce                	mov    %ecx,%esi
+    1d4d:	81 e6 fe ff ff 7f    	and    $0x7ffffffe,%esi
+    1d53:	48 8d 78 08          	lea    0x8(%rax),%rdi
+    1d57:	31 d2                	xor    %edx,%edx
+    1d59:	66 0f 28 05 4f eb ff 	movapd -0x14b1(%rip),%xmm0        # 8b0 <_IO_stdin_used+0x80>
+    1d60:	ff 
+    1d61:	66 66 66 66 66 66 2e 	data16 data16 data16 data16 data16 nopw %cs:0x0(%rax,%rax,1)
+    1d68:	0f 1f 84 00 00 00 00 
+    1d6f:	00 
       nextplanets[i].x += dt * nextplanets[i].vx;
-    1bfb:	4c 8d 04 92          	lea    (%rdx,%rdx,4),%r8
-    1bff:	66 42 0f 10 5c c6 08 	movupd 0x8(%rsi,%r8,8),%xmm3
-    1c06:	66 0f 59 d1          	mulpd  %xmm1,%xmm2
-    1c0a:	66 0f 58 d3          	addpd  %xmm3,%xmm2
-    1c0e:	66 42 0f 11 54 c6 08 	movupd %xmm2,0x8(%rsi,%r8,8)
-   for (int i=0; i<nplanets; i++) {
-    1c15:	48 ff c2             	inc    %rdx
-    1c18:	48 39 c2             	cmp    %rax,%rdx
-    1c1b:	0f 85 3f ff ff ff    	jne    1b60 <_Z4nextP6PlanetS0_+0x70>
+    1d70:	66 0f 10 0f          	movupd (%rdi),%xmm1
+    1d74:	66 0f 10 57 10       	movupd 0x10(%rdi),%xmm2
+    1d79:	66 0f 10 5f 28       	movupd 0x28(%rdi),%xmm3
+    1d7e:	66 0f 10 67 38       	movupd 0x38(%rdi),%xmm4
+    1d83:	66 0f 59 d0          	mulpd  %xmm0,%xmm2
+    1d87:	66 0f 58 d1          	addpd  %xmm1,%xmm2
+    1d8b:	66 0f 11 17          	movupd %xmm2,(%rdi)
+    1d8f:	66 0f 59 e0          	mulpd  %xmm0,%xmm4
+    1d93:	66 0f 58 e3          	addpd  %xmm3,%xmm4
+    1d97:	66 0f 11 67 28       	movupd %xmm4,0x28(%rdi)
+   for (int i = 0; i < nplanets; ++i) {
+    1d9c:	48 83 c2 02          	add    $0x2,%rdx
+    1da0:	48 83 c7 50          	add    $0x50,%rdi
+    1da4:	48 39 d6             	cmp    %rdx,%rsi
+    1da7:	75 c7                	jne    1d70 <_Z4nextP6PlanetS0_+0x90>
+    1da9:	f6 c1 01             	test   $0x1,%cl
+    1dac:	74 22                	je     1dd0 <_Z4nextP6PlanetS0_+0xf0>
+      nextplanets[i].x += dt * nextplanets[i].vx;
+    1dae:	48 8d 0c 92          	lea    (%rdx,%rdx,4),%rcx
+    1db2:	66 0f 10 44 c8 08    	movupd 0x8(%rax,%rcx,8),%xmm0
+    1db8:	66 0f 10 4c c8 18    	movupd 0x18(%rax,%rcx,8),%xmm1
+    1dbe:	66 0f 59 0d ea ea ff 	mulpd  -0x1516(%rip),%xmm1        # 8b0 <_IO_stdin_used+0x80>
+    1dc5:	ff 
+    1dc6:	66 0f 58 c8          	addpd  %xmm0,%xmm1
+    1dca:	66 0f 11 4c c8 08    	movupd %xmm1,0x8(%rax,%rcx,8)
       nextplanets[i].y += dt * nextplanets[i].vy;
    }
 }
-    1c21:	c3                   	retq   
-    1c22:	66 66 66 66 66 2e 0f 	data16 data16 data16 data16 nopw %cs:0x0(%rax,%rax,1)
-    1c29:	1f 84 00 00 00 00 00 
+    1dd0:	48 83 c4 18          	add    $0x18,%rsp
+    1dd4:	c3                   	retq   
+    1dd5:	66 66 2e 0f 1f 84 00 	data16 nopw %cs:0x0(%rax,%rax,1)
+    1ddc:	00 00 00 00 
 
-0000000000001c30 <main>:
+0000000000001de0 <_Z4nextP6PlanetS0_.omp_outlined>:
+   #pragma omp parallel for schedule(dynamic)
+    1de0:	55                   	push   %rbp
+    1de1:	41 57                	push   %r15
+    1de3:	41 56                	push   %r14
+    1de5:	41 55                	push   %r13
+    1de7:	41 54                	push   %r12
+    1de9:	53                   	push   %rbx
+    1dea:	48 83 ec 28          	sub    $0x28,%rsp
+    1dee:	48 89 4c 24 20       	mov    %rcx,0x20(%rsp)
+    1df3:	48 89 54 24 18       	mov    %rdx,0x18(%rsp)
+   for (int i=0; i<nplanets; i++) {
+    1df8:	44 8b 05 25 2b 00 00 	mov    0x2b25(%rip),%r8d        # 4924 <nplanets>
+    1dff:	45 85 c0             	test   %r8d,%r8d
+    1e02:	0f 8e af 01 00 00    	jle    1fb7 <_Z4nextP6PlanetS0_.omp_outlined+0x1d7>
+    1e08:	41 ff c8             	dec    %r8d
+    1e0b:	c7 44 24 0c 00 00 00 	movl   $0x0,0xc(%rsp)
+    1e12:	00 
+    1e13:	44 89 44 24 08       	mov    %r8d,0x8(%rsp)
+    1e18:	c7 44 24 14 01 00 00 	movl   $0x1,0x14(%rsp)
+    1e1f:	00 
+    1e20:	c7 44 24 10 00 00 00 	movl   $0x0,0x10(%rsp)
+    1e27:	00 
+    1e28:	8b 2f                	mov    (%rdi),%ebp
+    1e2a:	c7 04 24 01 00 00 00 	movl   $0x1,(%rsp)
+    1e31:	48 8d 1d 38 18 00 00 	lea    0x1838(%rip),%rbx        # 3670 <__init_array_end>
+    1e38:	48 89 df             	mov    %rbx,%rdi
+    1e3b:	89 ee                	mov    %ebp,%esi
+    1e3d:	ba 23 00 00 40       	mov    $0x40000023,%edx
+    1e42:	31 c9                	xor    %ecx,%ecx
+    1e44:	41 b9 01 00 00 00    	mov    $0x1,%r9d
+    1e4a:	e8 a1 07 00 00       	callq  25f0 <__kmpc_dispatch_init_4@plt>
+    1e4f:	48 8d 54 24 10       	lea    0x10(%rsp),%rdx
+    1e54:	48 8d 4c 24 0c       	lea    0xc(%rsp),%rcx
+    1e59:	4c 8d 44 24 08       	lea    0x8(%rsp),%r8
+    1e5e:	4c 8d 4c 24 14       	lea    0x14(%rsp),%r9
+    1e63:	48 89 df             	mov    %rbx,%rdi
+    1e66:	89 ee                	mov    %ebp,%esi
+    1e68:	e8 93 07 00 00       	callq  2600 <__kmpc_dispatch_next_4@plt>
+    1e6d:	85 c0                	test   %eax,%eax
+    1e6f:	0f 84 42 01 00 00    	je     1fb7 <_Z4nextP6PlanetS0_.omp_outlined+0x1d7>
+    1e75:	4c 8d 3d f4 17 00 00 	lea    0x17f4(%rip),%r15        # 3670 <__init_array_end>
+    1e7c:	4c 8d 64 24 10       	lea    0x10(%rsp),%r12
+    1e81:	4c 8d 6c 24 0c       	lea    0xc(%rsp),%r13
+    1e86:	48 8d 5c 24 08       	lea    0x8(%rsp),%rbx
+    1e8b:	4c 8d 74 24 14       	lea    0x14(%rsp),%r14
+    1e90:	f2 0f 10 3d d8 e9 ff 	movsd  -0x1628(%rip),%xmm7        # 870 <_IO_stdin_used+0x40>
+    1e97:	ff 
+    1e98:	66 44 0f 28 05 0f ea 	movapd -0x15f1(%rip),%xmm8        # 8b0 <_IO_stdin_used+0x80>
+    1e9f:	ff ff 
+    1ea1:	eb 3c                	jmp    1edf <_Z4nextP6PlanetS0_.omp_outlined+0xff>
+    1ea3:	66 66 66 66 2e 0f 1f 	data16 data16 data16 nopw %cs:0x0(%rax,%rax,1)
+    1eaa:	84 00 00 00 00 00 
+    1eb0:	4c 89 ff             	mov    %r15,%rdi
+    1eb3:	89 ee                	mov    %ebp,%esi
+    1eb5:	4c 89 e2             	mov    %r12,%rdx
+    1eb8:	4c 89 e9             	mov    %r13,%rcx
+    1ebb:	49 89 d8             	mov    %rbx,%r8
+    1ebe:	4d 89 f1             	mov    %r14,%r9
+    1ec1:	e8 3a 07 00 00       	callq  2600 <__kmpc_dispatch_next_4@plt>
+    1ec6:	66 44 0f 28 05 e1 e9 	movapd -0x161f(%rip),%xmm8        # 8b0 <_IO_stdin_used+0x80>
+    1ecd:	ff ff 
+    1ecf:	f2 0f 10 3d 99 e9 ff 	movsd  -0x1667(%rip),%xmm7        # 870 <_IO_stdin_used+0x40>
+    1ed6:	ff 
+    1ed7:	85 c0                	test   %eax,%eax
+    1ed9:	0f 84 d8 00 00 00    	je     1fb7 <_Z4nextP6PlanetS0_.omp_outlined+0x1d7>
+    1edf:	48 63 44 24 0c       	movslq 0xc(%rsp),%rax
+    1ee4:	8b 4c 24 08          	mov    0x8(%rsp),%ecx
+    1ee8:	39 c8                	cmp    %ecx,%eax
+    1eea:	7f c4                	jg     1eb0 <_Z4nextP6PlanetS0_.omp_outlined+0xd0>
+    1eec:	8b 3d 32 2a 00 00    	mov    0x2a32(%rip),%edi        # 4924 <nplanets>
+    1ef2:	85 ff                	test   %edi,%edi
+      for (int j=0; j<nplanets; j++) {
+    1ef4:	7e ba                	jle    1eb0 <_Z4nextP6PlanetS0_.omp_outlined+0xd0>
+    1ef6:	48 8b 54 24 18       	mov    0x18(%rsp),%rdx
+    1efb:	48 8b 12             	mov    (%rdx),%rdx
+    1efe:	48 8b 74 24 20       	mov    0x20(%rsp),%rsi
+    1f03:	48 8b 36             	mov    (%rsi),%rsi
+   #pragma omp parallel for schedule(dynamic)
+    1f06:	ff c1                	inc    %ecx
+    1f08:	48 c1 e7 03          	shl    $0x3,%rdi
+    1f0c:	48 8d 3c bf          	lea    (%rdi,%rdi,4),%rdi
+    1f10:	4c 8d 04 c5 00 00 00 	lea    0x0(,%rax,8),%r8
+    1f17:	00 
+    1f18:	4f 8d 0c 80          	lea    (%r8,%r8,4),%r9
+    1f1c:	f2 42 0f 10 04 0a    	movsd  (%rdx,%r9,1),%xmm0
+    1f22:	4e 8d 04 0e          	lea    (%rsi,%r9,1),%r8
+    1f26:	49 83 c0 18          	add    $0x18,%r8
+    1f2a:	66 42 0f 10 54 0a 08 	movupd 0x8(%rdx,%r9,1),%xmm2
+    1f31:	66 42 0f 10 4c 0e 18 	movupd 0x18(%rsi,%r9,1),%xmm1
+    1f38:	45 31 c9             	xor    %r9d,%r9d
+    1f3b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+         double dx = planets[j].x - planets[i].x;
+    1f40:	66 42 0f 10 5c 0a 08 	movupd 0x8(%rdx,%r9,1),%xmm3
+    1f47:	f2 42 0f 10 24 0a    	movsd  (%rdx,%r9,1),%xmm4
+    1f4d:	66 0f 5c da          	subpd  %xmm2,%xmm3
+         double distSqr = dx*dx + dy*dy + 0.0001;
+    1f51:	66 0f 28 eb          	movapd %xmm3,%xmm5
+    1f55:	66 0f 59 eb          	mulpd  %xmm3,%xmm5
+    1f59:	66 0f 15 ed          	unpckhpd %xmm5,%xmm5
+    1f5d:	66 0f 28 f3          	movapd %xmm3,%xmm6
+    1f61:	f2 0f 59 f3          	mulsd  %xmm3,%xmm6
+    1f65:	f2 0f 58 f5          	addsd  %xmm5,%xmm6
+         double invDist = planets[i].mass * planets[j].mass / sqrt(distSqr);
+    1f69:	f2 0f 59 e0          	mulsd  %xmm0,%xmm4
+         double distSqr = dx*dx + dy*dy + 0.0001;
+    1f6d:	f2 0f 58 f7          	addsd  %xmm7,%xmm6
+         double invDist = planets[i].mass * planets[j].mass / sqrt(distSqr);
+    1f71:	0f 57 ed             	xorps  %xmm5,%xmm5
+    1f74:	f2 0f 51 ee          	sqrtsd %xmm6,%xmm5
+    1f78:	f2 0f 5e e5          	divsd  %xmm5,%xmm4
+         double invDist3 = invDist * invDist * invDist;
+    1f7c:	66 0f 28 ec          	movapd %xmm4,%xmm5
+    1f80:	f2 0f 59 ec          	mulsd  %xmm4,%xmm5
+    1f84:	f2 0f 59 ec          	mulsd  %xmm4,%xmm5
+         nextplanets[i].vx += dt * dx * invDist3;
+    1f88:	66 41 0f 59 d8       	mulpd  %xmm8,%xmm3
+    1f8d:	66 0f 14 ed          	unpcklpd %xmm5,%xmm5
+    1f91:	66 0f 59 eb          	mulpd  %xmm3,%xmm5
+    1f95:	66 0f 58 cd          	addpd  %xmm5,%xmm1
+      for (int j=0; j<nplanets; j++) {
+    1f99:	49 83 c1 28          	add    $0x28,%r9
+    1f9d:	4c 39 cf             	cmp    %r9,%rdi
+    1fa0:	75 9e                	jne    1f40 <_Z4nextP6PlanetS0_.omp_outlined+0x160>
+         nextplanets[i].vx += dt * dx * invDist3;
+    1fa2:	66 41 0f 11 08       	movupd %xmm1,(%r8)
+   for (int i=0; i<nplanets; i++) {
+    1fa7:	48 ff c0             	inc    %rax
+    1faa:	39 c1                	cmp    %eax,%ecx
+    1fac:	0f 85 5e ff ff ff    	jne    1f10 <_Z4nextP6PlanetS0_.omp_outlined+0x130>
+    1fb2:	e9 f9 fe ff ff       	jmpq   1eb0 <_Z4nextP6PlanetS0_.omp_outlined+0xd0>
+   #pragma omp parallel for schedule(dynamic)
+    1fb7:	48 83 c4 28          	add    $0x28,%rsp
+    1fbb:	5b                   	pop    %rbx
+    1fbc:	41 5c                	pop    %r12
+    1fbe:	41 5d                	pop    %r13
+    1fc0:	41 5e                	pop    %r14
+    1fc2:	41 5f                	pop    %r15
+    1fc4:	5d                   	pop    %rbp
+    1fc5:	c3                   	retq   
+    1fc6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+    1fcd:	00 00 00 
+
+0000000000001fd0 <main>:
 
 int main(int argc, const char** argv){
-    1c30:	55                   	push   %rbp
-    1c31:	41 57                	push   %r15
-    1c33:	41 56                	push   %r14
-    1c35:	41 55                	push   %r13
-    1c37:	41 54                	push   %r12
-    1c39:	53                   	push   %rbx
-    1c3a:	48 83 ec 48          	sub    $0x48,%rsp
+    1fd0:	55                   	push   %rbp
+    1fd1:	41 57                	push   %r15
+    1fd3:	41 56                	push   %r14
+    1fd5:	41 55                	push   %r13
+    1fd7:	41 54                	push   %r12
+    1fd9:	53                   	push   %rbx
+    1fda:	48 83 ec 38          	sub    $0x38,%rsp
    if (argc < 2) {
-    1c3e:	83 ff 01             	cmp    $0x1,%edi
-    1c41:	7f 1c                	jg     1c5f <main+0x2f>
+    1fde:	83 ff 01             	cmp    $0x1,%edi
+    1fe1:	7f 1b                	jg     1ffe <main+0x2e>
       printf("Usage: %s <nplanets> <timesteps>\n", argv[0]);
-    1c43:	48 8b 36             	mov    (%rsi),%rsi
-    1c46:	48 8d 3d 45 eb ff ff 	lea    -0x14bb(%rip),%rdi        # 792 <_IO_stdin_used+0xf2>
-    1c4d:	31 c0                	xor    %eax,%eax
-    1c4f:	e8 fc 04 00 00       	callq  2150 <printf@plt>
-    1c54:	41 bf 01 00 00 00    	mov    $0x1,%r15d
-    1c5a:	e9 0f 04 00 00       	jmpq   206e <main+0x43e>
+    1fe3:	48 8b 36             	mov    (%rsi),%rsi
+    1fe6:	48 8d 3d 25 e9 ff ff 	lea    -0x16db(%rip),%rdi        # 912 <_IO_stdin_used+0xe2>
+    1fed:	31 c0                	xor    %eax,%eax
+    1fef:	e8 1c 06 00 00       	callq  2610 <printf@plt>
+    1ff4:	b8 01 00 00 00       	mov    $0x1,%eax
+    1ff9:	e9 ea 04 00 00       	jmpq   24e8 <main+0x518>
       return 1;
    }
    nplanets = atoi(argv[1]);
-    1c5f:	48 8b 7e 08          	mov    0x8(%rsi),%rdi
-    1c63:	49 89 f6             	mov    %rsi,%r14
+    1ffe:	48 8b 7e 08          	mov    0x8(%rsi),%rdi
+    2002:	49 89 f6             	mov    %rsi,%r14
 
 #ifdef __USE_EXTERN_INLINES
 __extern_inline int
 __NTH (atoi (const char *__nptr))
 {
   return (int) strtol (__nptr, (char **) NULL, 10);
-    1c66:	31 f6                	xor    %esi,%esi
-    1c68:	ba 0a 00 00 00       	mov    $0xa,%edx
-    1c6d:	e8 ee 04 00 00       	callq  2160 <strtol@plt>
-    1c72:	48 89 c3             	mov    %rax,%rbx
-    1c75:	89 1d 81 27 00 00    	mov    %ebx,0x2781(%rip)        # 43fc <nplanets>
+    2005:	31 f6                	xor    %esi,%esi
+    2007:	ba 0a 00 00 00       	mov    $0xa,%edx
+    200c:	e8 0f 06 00 00       	callq  2620 <strtol@plt>
+    2011:	48 89 c3             	mov    %rax,%rbx
+    2014:	89 1d 0a 29 00 00    	mov    %ebx,0x290a(%rip)        # 4924 <nplanets>
    timesteps = atoi(argv[2]);
-    1c7b:	49 8b 7e 10          	mov    0x10(%r14),%rdi
-    1c7f:	31 f6                	xor    %esi,%esi
-    1c81:	ba 0a 00 00 00       	mov    $0xa,%edx
-    1c86:	e8 d5 04 00 00       	callq  2160 <strtol@plt>
-    1c8b:	89 05 6f 27 00 00    	mov    %eax,0x276f(%rip)        # 4400 <timesteps>
+    201a:	49 8b 7e 10          	mov    0x10(%r14),%rdi
+    201e:	31 f6                	xor    %esi,%esi
+    2020:	ba 0a 00 00 00       	mov    $0xa,%edx
+    2025:	e8 f6 05 00 00       	callq  2620 <strtol@plt>
+    202a:	89 05 f8 28 00 00    	mov    %eax,0x28f8(%rip)        # 4928 <timesteps>
 
    Planet* planets = (Planet*)malloc(sizeof(Planet) * nplanets);
-    1c91:	48 63 c3             	movslq %ebx,%rax
-    1c94:	48 c1 e0 03          	shl    $0x3,%rax
-    1c98:	48 8d 3c 80          	lea    (%rax,%rax,4),%rdi
-    1c9c:	e8 cf 04 00 00       	callq  2170 <malloc@plt>
-    1ca1:	48 89 c3             	mov    %rax,%rbx
+    2030:	48 63 c3             	movslq %ebx,%rax
+    2033:	48 c1 e0 03          	shl    $0x3,%rax
+    2037:	48 8d 3c 80          	lea    (%rax,%rax,4),%rdi
+    203b:	e8 f0 05 00 00       	callq  2630 <malloc@plt>
+    2040:	49 89 c4             	mov    %rax,%r12
    Planet* nextplanets = (Planet*)malloc(sizeof(Planet) * nplanets);
-    1ca4:	4c 63 2d 51 27 00 00 	movslq 0x2751(%rip),%r13        # 43fc <nplanets>
-    1cab:	4a 8d 04 ed 00 00 00 	lea    0x0(,%r13,8),%rax
-    1cb2:	00 
-    1cb3:	48 8d 3c 80          	lea    (%rax,%rax,4),%rdi
-    1cb7:	e8 b4 04 00 00       	callq  2170 <malloc@plt>
-    1cbc:	49 89 c6             	mov    %rax,%r14
-    1cbf:	4d 85 ed             	test   %r13,%r13
+    2043:	48 63 2d da 28 00 00 	movslq 0x28da(%rip),%rbp        # 4924 <nplanets>
+    204a:	48 8d 04 ed 00 00 00 	lea    0x0(,%rbp,8),%rax
+    2051:	00 
+    2052:	48 8d 3c 80          	lea    (%rax,%rax,4),%rdi
+    2056:	e8 d5 05 00 00       	callq  2630 <malloc@plt>
+    205b:	48 89 c3             	mov    %rax,%rbx
+    205e:	48 85 ed             	test   %rbp,%rbp
    for (int i=0; i<nplanets; i++) {
-    1cc2:	0f 8e f8 02 00 00    	jle    1fc0 <main+0x390>
+    2061:	0f 8e dc 02 00 00    	jle    2343 <main+0x373>
+    2067:	49 be 00 00 00 f8 ff 	movabs $0x1ffffff8000000,%r14
+    206e:	ff 1f 00 
   seed ^= (seed << 21);
-    1cc8:	48 8b 05 d9 26 00 00 	mov    0x26d9(%rip),%rax        # 43a8 <seed>
-    1ccf:	45 31 ff             	xor    %r15d,%r15d
-    1cd2:	49 89 dc             	mov    %rbx,%r12
-    1cd5:	66 66 2e 0f 1f 84 00 	data16 nopw %cs:0x0(%rax,%rax,1)
-    1cdc:	00 00 00 00 
-    1ce0:	48 89 c1             	mov    %rax,%rcx
-    1ce3:	48 c1 e1 15          	shl    $0x15,%rcx
-    1ce7:	48 31 c1             	xor    %rax,%rcx
+    2071:	48 8b 05 38 28 00 00 	mov    0x2838(%rip),%rax        # 48b0 <seed>
+   for (int i=0; i<nplanets; i++) {
+    2078:	4d 8d 7c 24 18       	lea    0x18(%r12),%r15
+    207d:	45 31 ed             	xor    %r13d,%r13d
+  seed ^= (seed << 21);
+    2080:	48 89 c1             	mov    %rax,%rcx
+    2083:	48 c1 e1 15          	shl    $0x15,%rcx
+    2087:	48 31 c1             	xor    %rax,%rcx
   seed ^= (seed >> 35);
-    1cea:	48 89 ca             	mov    %rcx,%rdx
-    1ced:	48 c1 ea 23          	shr    $0x23,%rdx
-    1cf1:	48 31 ca             	xor    %rcx,%rdx
+    208a:	48 89 ca             	mov    %rcx,%rdx
+    208d:	48 c1 ea 23          	shr    $0x23,%rdx
+    2091:	48 31 ca             	xor    %rcx,%rdx
   seed ^= (seed << 4);
-    1cf4:	48 89 d0             	mov    %rdx,%rax
-    1cf7:	48 c1 e0 04          	shl    $0x4,%rax
-    1cfb:	48 31 d0             	xor    %rdx,%rax
+    2094:	48 89 d0             	mov    %rdx,%rax
+    2097:	48 c1 e0 04          	shl    $0x4,%rax
+    209b:	48 31 d0             	xor    %rdx,%rax
   seed ^= (seed << 21);
-    1cfe:	48 89 c1             	mov    %rax,%rcx
-    1d01:	48 c1 e1 15          	shl    $0x15,%rcx
-    1d05:	48 31 c1             	xor    %rax,%rcx
+    209e:	48 89 c1             	mov    %rax,%rcx
+    20a1:	48 c1 e1 15          	shl    $0x15,%rcx
+    20a5:	48 31 c1             	xor    %rax,%rcx
   seed ^= (seed >> 35);
-    1d08:	48 89 ca             	mov    %rcx,%rdx
-    1d0b:	48 c1 ea 23          	shr    $0x23,%rdx
-    1d0f:	48 31 ca             	xor    %rcx,%rdx
+    20a8:	48 89 ca             	mov    %rcx,%rdx
+    20ab:	48 c1 ea 23          	shr    $0x23,%rdx
+    20af:	48 31 ca             	xor    %rcx,%rdx
   seed ^= (seed << 4);
-    1d12:	48 89 d1             	mov    %rdx,%rcx
-    1d15:	48 c1 e1 04          	shl    $0x4,%rcx
-    1d19:	48 31 d1             	xor    %rdx,%rcx
+    20b2:	48 89 d1             	mov    %rdx,%rcx
+    20b5:	48 c1 e1 04          	shl    $0x4,%rcx
+    20b9:	48 31 d1             	xor    %rdx,%rcx
   seed ^= (seed << 21);
-    1d1c:	48 89 ca             	mov    %rcx,%rdx
+    20bc:	48 89 ca             	mov    %rcx,%rdx
+    20bf:	48 c1 e2 15          	shl    $0x15,%rdx
+    20c3:	48 31 ca             	xor    %rcx,%rdx
    next2 >>= (64 - 26);
-    1d1f:	48 89 ce             	mov    %rcx,%rsi
-    1d22:	48 c1 ee 26          	shr    $0x26,%rsi
+    20c6:	48 c1 e9 26          	shr    $0x26,%rcx
    return ((next << 27) + next2) / (double)(1LL << 53);
-    1d26:	48 c1 e8 0b          	shr    $0xb,%rax
-    1d2a:	48 25 00 00 00 f8    	and    $0xfffffffff8000000,%rax
-    1d30:	48 09 f0             	or     %rsi,%rax
-    1d33:	0f 57 c0             	xorps  %xmm0,%xmm0
-    1d36:	f2 48 0f 2a c0       	cvtsi2sd %rax,%xmm0
-  seed ^= (seed << 21);
-    1d3b:	48 c1 e2 15          	shl    $0x15,%rdx
-    1d3f:	48 31 ca             	xor    %rcx,%rdx
-   return ((next << 27) + next2) / (double)(1LL << 53);
-    1d42:	f2 0f 59 05 6e e9 ff 	mulsd  -0x1692(%rip),%xmm0        # 6b8 <_IO_stdin_used+0x18>
-    1d49:	ff 
+    20ca:	48 c1 e8 0b          	shr    $0xb,%rax
+    20ce:	4c 21 f0             	and    %r14,%rax
+    20d1:	48 09 c8             	or     %rcx,%rax
+    20d4:	0f 57 c0             	xorps  %xmm0,%xmm0
+    20d7:	f2 48 0f 2a c0       	cvtsi2sd %rax,%xmm0
+    20dc:	f2 0f 10 0d 64 e7 ff 	movsd  -0x189c(%rip),%xmm1        # 848 <_IO_stdin_used+0x18>
+    20e3:	ff 
+    20e4:	f2 0f 59 c1          	mulsd  %xmm1,%xmm0
       planets[i].mass = randomDouble() * 10 + 0.2;
-    1d4a:	f2 0f 59 05 76 e9 ff 	mulsd  -0x168a(%rip),%xmm0        # 6c8 <_IO_stdin_used+0x28>
-    1d51:	ff 
-    1d52:	f2 0f 58 05 66 e9 ff 	addsd  -0x169a(%rip),%xmm0        # 6c0 <_IO_stdin_used+0x20>
-    1d59:	ff 
-    1d5a:	f2 41 0f 11 04 24    	movsd  %xmm0,(%r12)
+    20e8:	f2 0f 59 05 68 e7 ff 	mulsd  -0x1898(%rip),%xmm0        # 858 <_IO_stdin_used+0x28>
+    20ef:	ff 
+    20f0:	f2 0f 58 05 58 e7 ff 	addsd  -0x18a8(%rip),%xmm0        # 850 <_IO_stdin_used+0x20>
+    20f7:	ff 
+    20f8:	f2 41 0f 11 47 e8    	movsd  %xmm0,-0x18(%r15)
   seed ^= (seed >> 35);
-    1d60:	48 89 d0             	mov    %rdx,%rax
-    1d63:	48 c1 e8 23          	shr    $0x23,%rax
-    1d67:	48 31 d0             	xor    %rdx,%rax
+    20fe:	48 89 d0             	mov    %rdx,%rax
+    2101:	48 c1 e8 23          	shr    $0x23,%rax
+    2105:	48 31 d0             	xor    %rdx,%rax
   seed ^= (seed << 4);
-    1d6a:	48 89 c5             	mov    %rax,%rbp
+    2108:	48 89 c1             	mov    %rax,%rcx
+    210b:	48 c1 e1 04          	shl    $0x4,%rcx
+    210f:	48 31 c1             	xor    %rax,%rcx
+  seed ^= (seed << 21);
+    2112:	48 89 c8             	mov    %rcx,%rax
+    2115:	48 c1 e0 15          	shl    $0x15,%rax
+    2119:	48 31 c8             	xor    %rcx,%rax
+  seed ^= (seed >> 35);
+    211c:	48 89 c2             	mov    %rax,%rdx
+    211f:	48 c1 ea 23          	shr    $0x23,%rdx
+    2123:	48 31 c2             	xor    %rax,%rdx
+  seed ^= (seed << 4);
+    2126:	48 89 d0             	mov    %rdx,%rax
+    2129:	48 c1 e0 04          	shl    $0x4,%rax
+    212d:	48 31 d0             	xor    %rdx,%rax
+    2130:	48 89 05 79 27 00 00 	mov    %rax,0x2779(%rip)        # 48b0 <seed>
+   next2 >>= (64 - 26);
+    2137:	48 c1 e8 26          	shr    $0x26,%rax
+   return ((next << 27) + next2) / (double)(1LL << 53);
+    213b:	48 c1 e9 0b          	shr    $0xb,%rcx
+    213f:	4c 21 f1             	and    %r14,%rcx
+    2142:	48 09 c1             	or     %rax,%rcx
+    2145:	f2 48 0f 2a d1       	cvtsi2sd %rcx,%xmm2
+    214a:	f2 0f 59 d1          	mulsd  %xmm1,%xmm2
+    214e:	f2 0f 10 05 0a e7 ff 	movsd  -0x18f6(%rip),%xmm0        # 860 <_IO_stdin_used+0x30>
+    2155:	ff 
       planets[i].x = ( randomDouble() - 0.5 ) * 100 * pow(1 + nplanets, 0.4);
-    1d6d:	41 ff c5             	inc    %r13d
+    2156:	f2 0f 58 d0          	addsd  %xmm0,%xmm2
+    215a:	f2 0f 10 05 06 e7 ff 	movsd  -0x18fa(%rip),%xmm0        # 868 <_IO_stdin_used+0x38>
+    2161:	ff 
+    2162:	f2 0f 59 d0          	mulsd  %xmm0,%xmm2
+    2166:	f2 0f 11 54 24 08    	movsd  %xmm2,0x8(%rsp)
+    216c:	ff c5                	inc    %ebp
     inline _GLIBCXX_CONSTEXPR
     typename __gnu_cxx::__promote_2<_Tp, _Up>::__type
     pow(_Tp __x, _Up __y)
     {
       typedef typename __gnu_cxx::__promote_2<_Tp, _Up>::__type __type;
       return pow(__type(__x), __type(__y));
-    1d70:	0f 57 c0             	xorps  %xmm0,%xmm0
-    1d73:	f2 41 0f 2a c5       	cvtsi2sd %r13d,%xmm0
-  seed ^= (seed << 4);
-    1d78:	48 c1 e5 04          	shl    $0x4,%rbp
-    1d7c:	48 31 c5             	xor    %rax,%rbp
+    216e:	0f 57 c0             	xorps  %xmm0,%xmm0
+    2171:	f2 0f 2a c5          	cvtsi2sd %ebp,%xmm0
+    2175:	f2 0f 10 0d bb e6 ff 	movsd  -0x1945(%rip),%xmm1        # 838 <_IO_stdin_used+0x8>
+    217c:	ff 
+    217d:	e8 be 04 00 00       	callq  2640 <pow@plt>
+    2182:	f2 0f 59 44 24 08    	mulsd  0x8(%rsp),%xmm0
   seed ^= (seed << 21);
-    1d7f:	48 89 e8             	mov    %rbp,%rax
-    1d82:	48 c1 e0 15          	shl    $0x15,%rax
-    1d86:	48 31 e8             	xor    %rbp,%rax
+    2188:	48 8b 05 21 27 00 00 	mov    0x2721(%rip),%rax        # 48b0 <seed>
+    218f:	48 89 c1             	mov    %rax,%rcx
+    2192:	48 c1 e1 15          	shl    $0x15,%rcx
+    2196:	48 31 c1             	xor    %rax,%rcx
   seed ^= (seed >> 35);
-    1d89:	48 89 c1             	mov    %rax,%rcx
-    1d8c:	48 c1 e9 23          	shr    $0x23,%rcx
-    1d90:	48 31 c1             	xor    %rax,%rcx
+    2199:	48 89 c8             	mov    %rcx,%rax
+    219c:	48 c1 e8 23          	shr    $0x23,%rax
+    21a0:	48 31 c8             	xor    %rcx,%rax
   seed ^= (seed << 4);
-    1d93:	49 89 cd             	mov    %rcx,%r13
-    1d96:	49 c1 e5 04          	shl    $0x4,%r13
-    1d9a:	49 31 cd             	xor    %rcx,%r13
-    1d9d:	4c 89 2d 04 26 00 00 	mov    %r13,0x2604(%rip)        # 43a8 <seed>
-    1da4:	f2 0f 10 0d fc e8 ff 	movsd  -0x1704(%rip),%xmm1        # 6a8 <_IO_stdin_used+0x8>
-    1dab:	ff 
-    1dac:	e8 cf 03 00 00       	callq  2180 <pow@plt>
-    1db1:	66 0f 29 44 24 30    	movapd %xmm0,0x30(%rsp)
+    21a3:	48 89 c1             	mov    %rax,%rcx
+    21a6:	48 c1 e1 04          	shl    $0x4,%rcx
+    21aa:	48 31 c1             	xor    %rax,%rcx
   seed ^= (seed << 21);
-    1db7:	48 8b 05 ea 25 00 00 	mov    0x25ea(%rip),%rax        # 43a8 <seed>
-    1dbe:	48 89 c1             	mov    %rax,%rcx
-    1dc1:	48 c1 e1 15          	shl    $0x15,%rcx
-    1dc5:	48 31 c1             	xor    %rax,%rcx
+    21ad:	48 89 c8             	mov    %rcx,%rax
+    21b0:	48 c1 e0 15          	shl    $0x15,%rax
+    21b4:	48 31 c8             	xor    %rcx,%rax
   seed ^= (seed >> 35);
-    1dc8:	48 89 c8             	mov    %rcx,%rax
-    1dcb:	48 c1 e8 23          	shr    $0x23,%rax
-    1dcf:	48 31 c8             	xor    %rcx,%rax
+    21b7:	48 89 c2             	mov    %rax,%rdx
+    21ba:	48 c1 ea 23          	shr    $0x23,%rdx
+    21be:	48 31 c2             	xor    %rax,%rdx
   seed ^= (seed << 4);
-    1dd2:	48 89 c1             	mov    %rax,%rcx
-    1dd5:	48 c1 e1 04          	shl    $0x4,%rcx
-    1dd9:	48 31 c1             	xor    %rax,%rcx
-  seed ^= (seed << 21);
-    1ddc:	48 89 c8             	mov    %rcx,%rax
-    1ddf:	48 c1 e0 15          	shl    $0x15,%rax
-    1de3:	48 31 c8             	xor    %rcx,%rax
-  seed ^= (seed >> 35);
-    1de6:	48 89 c2             	mov    %rax,%rdx
-    1de9:	48 c1 ea 23          	shr    $0x23,%rdx
-    1ded:	48 31 c2             	xor    %rax,%rdx
-  seed ^= (seed << 4);
-    1df0:	48 89 d0             	mov    %rdx,%rax
-    1df3:	48 c1 e0 04          	shl    $0x4,%rax
-    1df7:	48 31 d0             	xor    %rdx,%rax
-    1dfa:	48 89 05 a7 25 00 00 	mov    %rax,0x25a7(%rip)        # 43a8 <seed>
+    21c1:	48 89 d0             	mov    %rdx,%rax
+    21c4:	48 c1 e0 04          	shl    $0x4,%rax
+    21c8:	48 31 d0             	xor    %rdx,%rax
+    21cb:	48 89 05 de 26 00 00 	mov    %rax,0x26de(%rip)        # 48b0 <seed>
    next2 >>= (64 - 26);
-    1e01:	66 49 0f 6e c5       	movq   %r13,%xmm0
-    1e06:	66 48 0f 6e c8       	movq   %rax,%xmm1
-    1e0b:	66 0f 6c c1          	punpcklqdq %xmm1,%xmm0
-    1e0f:	66 0f 73 d0 26       	psrlq  $0x26,%xmm0
+    21d2:	48 c1 e8 26          	shr    $0x26,%rax
    return ((next << 27) + next2) / (double)(1LL << 53);
-    1e14:	66 48 0f 6e cd       	movq   %rbp,%xmm1
-    1e19:	66 48 0f 6e d1       	movq   %rcx,%xmm2
-    1e1e:	66 0f 6c ca          	punpcklqdq %xmm2,%xmm1
-    1e22:	66 0f 73 d1 0b       	psrlq  $0xb,%xmm1
-    1e27:	66 0f 6f 15 e1 e8 ff 	movdqa -0x171f(%rip),%xmm2        # 710 <_IO_stdin_used+0x70>
-    1e2e:	ff 
-    1e2f:	66 0f db ca          	pand   %xmm2,%xmm1
-    1e33:	66 0f eb c8          	por    %xmm0,%xmm1
-    1e37:	66 48 0f 7e c8       	movq   %xmm1,%rax
-    1e3c:	0f 57 d2             	xorps  %xmm2,%xmm2
-    1e3f:	f2 48 0f 2a d0       	cvtsi2sd %rax,%xmm2
-    1e44:	66 0f 70 c1 ee       	pshufd $0xee,%xmm1,%xmm0
-    1e49:	66 48 0f 7e c0       	movq   %xmm0,%rax
-    1e4e:	0f 57 c0             	xorps  %xmm0,%xmm0
-    1e51:	f2 48 0f 2a c0       	cvtsi2sd %rax,%xmm0
-    1e56:	66 0f 14 d0          	unpcklpd %xmm0,%xmm2
-    1e5a:	66 0f 28 05 8e e8 ff 	movapd -0x1772(%rip),%xmm0        # 6f0 <_IO_stdin_used+0x50>
-    1e61:	ff 
-    1e62:	66 0f 59 d0          	mulpd  %xmm0,%xmm2
+    21d6:	48 c1 e9 0b          	shr    $0xb,%rcx
+    21da:	4c 21 f1             	and    %r14,%rcx
+    21dd:	48 09 c1             	or     %rax,%rcx
+    21e0:	0f 57 c9             	xorps  %xmm1,%xmm1
+    21e3:	f2 48 0f 2a c9       	cvtsi2sd %rcx,%xmm1
       planets[i].x = ( randomDouble() - 0.5 ) * 100 * pow(1 + nplanets, 0.4);
-    1e66:	66 0f 58 15 d2 e8 ff 	addpd  -0x172e(%rip),%xmm2        # 740 <_IO_stdin_used+0xa0>
-    1e6d:	ff 
-    1e6e:	66 0f 59 15 6a e8 ff 	mulpd  -0x1796(%rip),%xmm2        # 6e0 <_IO_stdin_used+0x40>
-    1e75:	ff 
-    1e76:	66 0f 29 54 24 20    	movapd %xmm2,0x20(%rsp)
+    21e8:	f2 41 0f 11 47 f0    	movsd  %xmm0,-0x10(%r15)
+   return ((next << 27) + next2) / (double)(1LL << 53);
+    21ee:	f2 0f 59 0d 52 e6 ff 	mulsd  -0x19ae(%rip),%xmm1        # 848 <_IO_stdin_used+0x18>
+    21f5:	ff 
       planets[i].y = ( randomDouble() - 0.5 ) * 100 * pow(1 + nplanets, 0.4);
-    1e7c:	8b 05 7a 25 00 00    	mov    0x257a(%rip),%eax        # 43fc <nplanets>
-    1e82:	ff c0                	inc    %eax
-    1e84:	0f 57 c0             	xorps  %xmm0,%xmm0
-    1e87:	f2 0f 2a c0          	cvtsi2sd %eax,%xmm0
-    1e8b:	f2 0f 10 0d 15 e8 ff 	movsd  -0x17eb(%rip),%xmm1        # 6a8 <_IO_stdin_used+0x8>
-    1e92:	ff 
-    1e93:	e8 e8 02 00 00       	callq  2180 <pow@plt>
+    21f6:	f2 0f 58 0d 62 e6 ff 	addsd  -0x199e(%rip),%xmm1        # 860 <_IO_stdin_used+0x30>
+    21fd:	ff 
+    21fe:	f2 0f 59 0d 62 e6 ff 	mulsd  -0x199e(%rip),%xmm1        # 868 <_IO_stdin_used+0x38>
+    2205:	ff 
+    2206:	f2 0f 11 4c 24 08    	movsd  %xmm1,0x8(%rsp)
+    220c:	8b 05 12 27 00 00    	mov    0x2712(%rip),%eax        # 4924 <nplanets>
+    2212:	ff c0                	inc    %eax
+    2214:	0f 57 c0             	xorps  %xmm0,%xmm0
+    2217:	f2 0f 2a c0          	cvtsi2sd %eax,%xmm0
+    221b:	f2 0f 10 0d 15 e6 ff 	movsd  -0x19eb(%rip),%xmm1        # 838 <_IO_stdin_used+0x8>
+    2222:	ff 
+    2223:	e8 18 04 00 00       	callq  2640 <pow@plt>
   seed ^= (seed << 21);
-    1e98:	48 8b 05 09 25 00 00 	mov    0x2509(%rip),%rax        # 43a8 <seed>
-    1e9f:	48 89 c1             	mov    %rax,%rcx
-    1ea2:	48 c1 e1 15          	shl    $0x15,%rcx
-    1ea6:	48 31 c1             	xor    %rax,%rcx
+    2228:	48 8b 05 81 26 00 00 	mov    0x2681(%rip),%rax        # 48b0 <seed>
+    222f:	48 89 c1             	mov    %rax,%rcx
+    2232:	48 c1 e1 15          	shl    $0x15,%rcx
+    2236:	48 31 c1             	xor    %rax,%rcx
   seed ^= (seed >> 35);
-    1ea9:	48 89 c8             	mov    %rcx,%rax
-    1eac:	48 c1 e8 23          	shr    $0x23,%rax
-    1eb0:	48 31 c8             	xor    %rcx,%rax
+    2239:	48 89 c8             	mov    %rcx,%rax
+    223c:	48 c1 e8 23          	shr    $0x23,%rax
+    2240:	48 31 c8             	xor    %rcx,%rax
   seed ^= (seed << 4);
-    1eb3:	48 89 c1             	mov    %rax,%rcx
-    1eb6:	48 c1 e1 04          	shl    $0x4,%rcx
-    1eba:	48 31 c1             	xor    %rax,%rcx
+    2243:	48 89 c1             	mov    %rax,%rcx
+    2246:	48 c1 e1 04          	shl    $0x4,%rcx
+    224a:	48 31 c1             	xor    %rax,%rcx
   seed ^= (seed << 21);
-    1ebd:	48 89 c8             	mov    %rcx,%rax
-    1ec0:	48 c1 e0 15          	shl    $0x15,%rax
-    1ec4:	48 31 c8             	xor    %rcx,%rax
+    224d:	48 89 c8             	mov    %rcx,%rax
+    2250:	48 c1 e0 15          	shl    $0x15,%rax
+    2254:	48 31 c8             	xor    %rcx,%rax
   seed ^= (seed >> 35);
-    1ec7:	48 89 c6             	mov    %rax,%rsi
-    1eca:	48 c1 ee 23          	shr    $0x23,%rsi
-    1ece:	48 31 c6             	xor    %rax,%rsi
+    2257:	48 89 c6             	mov    %rax,%rsi
+    225a:	48 c1 ee 23          	shr    $0x23,%rsi
+    225e:	48 31 c6             	xor    %rax,%rsi
   seed ^= (seed << 4);
-    1ed1:	48 89 f2             	mov    %rsi,%rdx
-    1ed4:	48 c1 e2 04          	shl    $0x4,%rdx
-    1ed8:	48 31 f2             	xor    %rsi,%rdx
+    2261:	48 89 f2             	mov    %rsi,%rdx
+    2264:	48 c1 e2 04          	shl    $0x4,%rdx
+    2268:	48 31 f2             	xor    %rsi,%rdx
   seed ^= (seed << 21);
-    1edb:	48 89 d0             	mov    %rdx,%rax
-    1ede:	48 c1 e0 15          	shl    $0x15,%rax
-    1ee2:	48 31 d0             	xor    %rdx,%rax
+    226b:	48 89 d0             	mov    %rdx,%rax
+    226e:	48 c1 e0 15          	shl    $0x15,%rax
+    2272:	48 31 d0             	xor    %rdx,%rax
   seed ^= (seed >> 35);
-    1ee5:	48 89 c6             	mov    %rax,%rsi
-    1ee8:	48 c1 ee 23          	shr    $0x23,%rsi
-    1eec:	48 31 c6             	xor    %rax,%rsi
+    2275:	48 89 c6             	mov    %rax,%rsi
+    2278:	48 c1 ee 23          	shr    $0x23,%rsi
+    227c:	48 31 c6             	xor    %rax,%rsi
   seed ^= (seed << 4);
-    1eef:	48 89 f7             	mov    %rsi,%rdi
-    1ef2:	48 c1 e7 04          	shl    $0x4,%rdi
-    1ef6:	48 31 f7             	xor    %rsi,%rdi
+    227f:	48 89 f7             	mov    %rsi,%rdi
+    2282:	48 c1 e7 04          	shl    $0x4,%rdi
+    2286:	48 31 f7             	xor    %rsi,%rdi
   seed ^= (seed << 21);
-    1ef9:	48 89 f8             	mov    %rdi,%rax
-    1efc:	48 c1 e0 15          	shl    $0x15,%rax
-    1f00:	66 0f 28 4c 24 30    	movapd 0x30(%rsp),%xmm1
-      planets[i].x = ( randomDouble() - 0.5 ) * 100 * pow(1 + nplanets, 0.4);
-    1f06:	66 0f 14 c8          	unpcklpd %xmm0,%xmm1
-  seed ^= (seed << 21);
-    1f0a:	48 31 f8             	xor    %rdi,%rax
+    2289:	48 89 f8             	mov    %rdi,%rax
+    228c:	48 c1 e0 15          	shl    $0x15,%rax
+    2290:	48 31 f8             	xor    %rdi,%rax
   seed ^= (seed >> 35);
-    1f0d:	48 89 c6             	mov    %rax,%rsi
-    1f10:	48 c1 ee 23          	shr    $0x23,%rsi
-      planets[i].x = ( randomDouble() - 0.5 ) * 100 * pow(1 + nplanets, 0.4);
-    1f14:	66 0f 59 4c 24 20    	mulpd  0x20(%rsp),%xmm1
+    2293:	48 89 c6             	mov    %rax,%rsi
+    2296:	48 c1 ee 23          	shr    $0x23,%rsi
+      planets[i].y = ( randomDouble() - 0.5 ) * 100 * pow(1 + nplanets, 0.4);
+    229a:	f2 0f 59 44 24 08    	mulsd  0x8(%rsp),%xmm0
   seed ^= (seed >> 35);
-    1f1a:	48 31 c6             	xor    %rax,%rsi
+    22a0:	48 31 c6             	xor    %rax,%rsi
   seed ^= (seed << 4);
-    1f1d:	48 89 f0             	mov    %rsi,%rax
-    1f20:	48 c1 e0 04          	shl    $0x4,%rax
-      planets[i].x = ( randomDouble() - 0.5 ) * 100 * pow(1 + nplanets, 0.4);
-    1f24:	66 41 0f 11 4c 24 08 	movupd %xmm1,0x8(%r12)
+    22a3:	48 89 f0             	mov    %rsi,%rax
+    22a6:	48 c1 e0 04          	shl    $0x4,%rax
+      planets[i].y = ( randomDouble() - 0.5 ) * 100 * pow(1 + nplanets, 0.4);
+    22aa:	f2 41 0f 11 47 f8    	movsd  %xmm0,-0x8(%r15)
   seed ^= (seed << 4);
-    1f2b:	48 31 f0             	xor    %rsi,%rax
+    22b0:	48 31 f0             	xor    %rsi,%rax
    next2 >>= (64 - 26);
-    1f2e:	66 48 0f 6e c0       	movq   %rax,%xmm0
-    1f33:	66 48 0f 6e ca       	movq   %rdx,%xmm1
-    1f38:	66 0f 6c c8          	punpcklqdq %xmm0,%xmm1
+    22b3:	66 48 0f 6e c0       	movq   %rax,%xmm0
+    22b8:	66 48 0f 6e ca       	movq   %rdx,%xmm1
+    22bd:	66 0f 6c c8          	punpcklqdq %xmm0,%xmm1
    return ((next << 27) + next2) / (double)(1LL << 53);
-    1f3c:	66 48 0f 6e c7       	movq   %rdi,%xmm0
-    1f41:	66 48 0f 6e d1       	movq   %rcx,%xmm2
-    1f46:	66 0f 6c d0          	punpcklqdq %xmm0,%xmm2
+    22c1:	66 48 0f 6e c7       	movq   %rdi,%xmm0
+    22c6:	66 48 0f 6e d1       	movq   %rcx,%xmm2
+    22cb:	66 0f 6c d0          	punpcklqdq %xmm0,%xmm2
    next2 >>= (64 - 26);
-    1f4a:	66 0f 73 d1 26       	psrlq  $0x26,%xmm1
+    22cf:	66 0f 73 d1 26       	psrlq  $0x26,%xmm1
    return ((next << 27) + next2) / (double)(1LL << 53);
-    1f4f:	66 0f 73 d2 0b       	psrlq  $0xb,%xmm2
-    1f54:	66 0f db 15 b4 e7 ff 	pand   -0x184c(%rip),%xmm2        # 710 <_IO_stdin_used+0x70>
-    1f5b:	ff 
-    1f5c:	66 0f eb d1          	por    %xmm1,%xmm2
-    1f60:	66 48 0f 7e d1       	movq   %xmm2,%rcx
-    1f65:	66 0f 70 c2 ee       	pshufd $0xee,%xmm2,%xmm0
-    1f6a:	66 48 0f 7e c2       	movq   %xmm0,%rdx
-    1f6f:	0f 57 c0             	xorps  %xmm0,%xmm0
-    1f72:	f2 48 0f 2a c1       	cvtsi2sd %rcx,%xmm0
-    1f77:	0f 57 c9             	xorps  %xmm1,%xmm1
-    1f7a:	f2 48 0f 2a ca       	cvtsi2sd %rdx,%xmm1
-    1f7f:	66 0f 14 c1          	unpcklpd %xmm1,%xmm0
+    22d4:	66 0f 73 d2 0b       	psrlq  $0xb,%xmm2
+    22d9:	66 0f db 15 bf e5 ff 	pand   -0x1a41(%rip),%xmm2        # 8a0 <_IO_stdin_used+0x70>
+    22e0:	ff 
+    22e1:	66 0f eb d1          	por    %xmm1,%xmm2
+    22e5:	66 48 0f 7e d1       	movq   %xmm2,%rcx
+    22ea:	66 0f 70 c2 ee       	pshufd $0xee,%xmm2,%xmm0
+    22ef:	66 48 0f 7e c2       	movq   %xmm0,%rdx
+    22f4:	0f 57 c0             	xorps  %xmm0,%xmm0
+    22f7:	f2 48 0f 2a c1       	cvtsi2sd %rcx,%xmm0
+    22fc:	0f 57 c9             	xorps  %xmm1,%xmm1
+    22ff:	f2 48 0f 2a ca       	cvtsi2sd %rdx,%xmm1
+    2304:	66 0f 14 c1          	unpcklpd %xmm1,%xmm0
   seed ^= (seed << 4);
-    1f83:	48 89 05 1e 24 00 00 	mov    %rax,0x241e(%rip)        # 43a8 <seed>
+    2308:	48 89 05 a1 25 00 00 	mov    %rax,0x25a1(%rip)        # 48b0 <seed>
    return ((next << 27) + next2) / (double)(1LL << 53);
-    1f8a:	66 0f 59 05 5e e7 ff 	mulpd  -0x18a2(%rip),%xmm0        # 6f0 <_IO_stdin_used+0x50>
-    1f91:	ff 
+    230f:	66 0f 59 05 69 e5 ff 	mulpd  -0x1a97(%rip),%xmm0        # 880 <_IO_stdin_used+0x50>
+    2316:	ff 
       planets[i].vx = randomDouble() * 5 - 2.5;
-    1f92:	66 0f 59 05 66 e7 ff 	mulpd  -0x189a(%rip),%xmm0        # 700 <_IO_stdin_used+0x60>
-    1f99:	ff 
-    1f9a:	66 0f 58 05 8e e7 ff 	addpd  -0x1872(%rip),%xmm0        # 730 <_IO_stdin_used+0x90>
-    1fa1:	ff 
-    1fa2:	66 41 0f 11 44 24 18 	movupd %xmm0,0x18(%r12)
+    2317:	66 0f 59 05 71 e5 ff 	mulpd  -0x1a8f(%rip),%xmm0        # 890 <_IO_stdin_used+0x60>
+    231e:	ff 
+    231f:	66 0f 58 05 99 e5 ff 	addpd  -0x1a67(%rip),%xmm0        # 8c0 <_IO_stdin_used+0x90>
+    2326:	ff 
+    2327:	66 41 0f 11 07       	movupd %xmm0,(%r15)
    for (int i=0; i<nplanets; i++) {
-    1fa9:	49 ff c7             	inc    %r15
-    1fac:	4c 63 2d 49 24 00 00 	movslq 0x2449(%rip),%r13        # 43fc <nplanets>
-    1fb3:	49 83 c4 28          	add    $0x28,%r12
-    1fb7:	4d 39 ef             	cmp    %r13,%r15
-    1fba:	0f 8c 20 fd ff ff    	jl     1ce0 <main+0xb0>
-    1fc0:	45 31 ff             	xor    %r15d,%r15d
-    1fc3:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+    232c:	49 ff c5             	inc    %r13
+    232f:	48 63 2d ee 25 00 00 	movslq 0x25ee(%rip),%rbp        # 4924 <nplanets>
+    2336:	49 83 c7 28          	add    $0x28,%r15
+    233a:	49 39 ed             	cmp    %rbp,%r13
+    233d:	0f 8c 3d fd ff ff    	jl     2080 <main+0xb0>
+    2343:	48 8d 7c 24 28       	lea    0x28(%rsp),%rdi
       planets[i].vy = randomDouble() * 5 - 2.5;
    }
 
    struct timeval start, end;
    gettimeofday(&start, NULL);
-    1fc8:	31 f6                	xor    %esi,%esi
-    1fca:	e8 c1 01 00 00       	callq  2190 <gettimeofday@plt>
+    2348:	31 f6                	xor    %esi,%esi
+    234a:	e8 01 03 00 00       	callq  2650 <gettimeofday@plt>
    for (int i=0; i<timesteps; i++) {
-    1fcf:	83 3d 2a 24 00 00 00 	cmpl   $0x0,0x242a(%rip)        # 4400 <timesteps>
-    1fd6:	7e 28                	jle    2000 <main+0x3d0>
-    1fd8:	31 ed                	xor    %ebp,%ebp
-    1fda:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
-    1fe0:	4d 89 f4             	mov    %r14,%r12
+    234f:	83 3d d2 25 00 00 00 	cmpl   $0x0,0x25d2(%rip)        # 4928 <timesteps>
+    2356:	0f 8e 1c 01 00 00    	jle    2478 <main+0x4a8>
+   std::memcpy(nextplanets, planets, sizeof(Planet) * nplanets);
+    235c:	8b 05 c2 25 00 00    	mov    0x25c2(%rip),%eax        # 4924 <nplanets>
+    2362:	48 8d 6c 24 18       	lea    0x18(%rsp),%rbp
+    2367:	4c 8d 7c 24 10       	lea    0x10(%rsp),%r15
+    236c:	45 31 ed             	xor    %r13d,%r13d
+    236f:	eb 22                	jmp    2393 <main+0x3c3>
+    2371:	66 66 66 66 66 66 2e 	data16 data16 data16 data16 data16 nopw %cs:0x0(%rax,%rax,1)
+    2378:	0f 1f 84 00 00 00 00 
+    237f:	00 
+   for (int i=0; i<timesteps; i++) {
+    2380:	41 ff c5             	inc    %r13d
+    2383:	4c 89 f3             	mov    %r14,%rbx
+    2386:	44 3b 2d 9b 25 00 00 	cmp    0x259b(%rip),%r13d        # 4928 <timesteps>
+    238d:	0f 8d e5 00 00 00    	jge    2478 <main+0x4a8>
+    2393:	4d 89 e6             	mov    %r12,%r14
+    2396:	49 89 dc             	mov    %rbx,%r12
+    2399:	4c 89 74 24 18       	mov    %r14,0x18(%rsp)
+    239e:	48 89 5c 24 10       	mov    %rbx,0x10(%rsp)
+   std::memcpy(nextplanets, planets, sizeof(Planet) * nplanets);
+    23a3:	48 98                	cltq   
+    23a5:	48 c1 e0 03          	shl    $0x3,%rax
+    23a9:	48 8d 14 80          	lea    (%rax,%rax,4),%rdx
+    23ad:	48 89 df             	mov    %rbx,%rdi
+    23b0:	4c 89 f6             	mov    %r14,%rsi
+    23b3:	e8 18 02 00 00       	callq  25d0 <memcpy@plt>
+   #pragma omp parallel for schedule(dynamic)
+    23b8:	48 8d 3d b1 12 00 00 	lea    0x12b1(%rip),%rdi        # 3670 <__init_array_end>
+    23bf:	be 02 00 00 00       	mov    $0x2,%esi
+    23c4:	48 8d 15 15 fa ff ff 	lea    -0x5eb(%rip),%rdx        # 1de0 <_Z4nextP6PlanetS0_.omp_outlined>
+    23cb:	48 89 e9             	mov    %rbp,%rcx
+    23ce:	4d 89 f8             	mov    %r15,%r8
+    23d1:	31 c0                	xor    %eax,%eax
+    23d3:	e8 08 02 00 00       	callq  25e0 <__kmpc_fork_call@plt>
+    23d8:	66 0f 28 25 d0 e4 ff 	movapd -0x1b30(%rip),%xmm4        # 8b0 <_IO_stdin_used+0x80>
+    23df:	ff 
+    23e0:	8b 05 3e 25 00 00    	mov    0x253e(%rip),%eax        # 4924 <nplanets>
+   for (int i = 0; i < nplanets; ++i) {
+    23e6:	85 c0                	test   %eax,%eax
+    23e8:	7e 96                	jle    2380 <main+0x3b0>
+    23ea:	48 8b 4c 24 10       	mov    0x10(%rsp),%rcx
+    23ef:	83 f8 01             	cmp    $0x1,%eax
+    23f2:	75 0c                	jne    2400 <main+0x430>
+    23f4:	31 d2                	xor    %edx,%edx
+    23f6:	eb 51                	jmp    2449 <main+0x479>
+    23f8:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+    23ff:	00 
+    2400:	89 c6                	mov    %eax,%esi
+    2402:	81 e6 fe ff ff 7f    	and    $0x7ffffffe,%esi
+    2408:	48 8d 79 08          	lea    0x8(%rcx),%rdi
+    240c:	31 d2                	xor    %edx,%edx
+    240e:	66 90                	xchg   %ax,%ax
+      nextplanets[i].x += dt * nextplanets[i].vx;
+    2410:	66 0f 10 07          	movupd (%rdi),%xmm0
+    2414:	66 0f 10 4f 10       	movupd 0x10(%rdi),%xmm1
+    2419:	66 0f 10 57 28       	movupd 0x28(%rdi),%xmm2
+    241e:	66 0f 10 5f 38       	movupd 0x38(%rdi),%xmm3
+    2423:	66 0f 59 cc          	mulpd  %xmm4,%xmm1
+    2427:	66 0f 58 c8          	addpd  %xmm0,%xmm1
+    242b:	66 0f 11 0f          	movupd %xmm1,(%rdi)
+    242f:	66 0f 59 dc          	mulpd  %xmm4,%xmm3
+    2433:	66 0f 58 da          	addpd  %xmm2,%xmm3
+    2437:	66 0f 11 5f 28       	movupd %xmm3,0x28(%rdi)
+   for (int i = 0; i < nplanets; ++i) {
+    243c:	48 83 c2 02          	add    $0x2,%rdx
+    2440:	48 83 c7 50          	add    $0x50,%rdi
+    2444:	48 39 d6             	cmp    %rdx,%rsi
+    2447:	75 c7                	jne    2410 <main+0x440>
+    2449:	a8 01                	test   $0x1,%al
+    244b:	0f 84 2f ff ff ff    	je     2380 <main+0x3b0>
+      nextplanets[i].x += dt * nextplanets[i].vx;
+    2451:	48 8d 14 92          	lea    (%rdx,%rdx,4),%rdx
+    2455:	66 0f 10 44 d1 08    	movupd 0x8(%rcx,%rdx,8),%xmm0
+    245b:	66 0f 10 4c d1 18    	movupd 0x18(%rcx,%rdx,8),%xmm1
+    2461:	66 0f 59 0d 47 e4 ff 	mulpd  -0x1bb9(%rip),%xmm1        # 8b0 <_IO_stdin_used+0x80>
+    2468:	ff 
+    2469:	66 0f 58 c8          	addpd  %xmm0,%xmm1
+    246d:	66 0f 11 4c d1 08    	movupd %xmm1,0x8(%rcx,%rdx,8)
+    2473:	e9 08 ff ff ff       	jmpq   2380 <main+0x3b0>
+    2478:	48 8d 7c 24 18       	lea    0x18(%rsp),%rdi
       next(planets, nextplanets);
-    1fe3:	48 89 df             	mov    %rbx,%rdi
-    1fe6:	4c 89 f6             	mov    %r14,%rsi
-    1fe9:	e8 02 fb ff ff       	callq  1af0 <_Z4nextP6PlanetS0_>
-   for (int i=0; i<timesteps; i++) {
-    1fee:	ff c5                	inc    %ebp
-    1ff0:	49 89 de             	mov    %rbx,%r14
-    1ff3:	4c 89 e3             	mov    %r12,%rbx
-    1ff6:	3b 2d 04 24 00 00    	cmp    0x2404(%rip),%ebp        # 4400 <timesteps>
-    1ffc:	7c e2                	jl     1fe0 <main+0x3b0>
-    1ffe:	eb 03                	jmp    2003 <main+0x3d3>
-    2000:	49 89 dc             	mov    %rbx,%r12
-    2003:	48 89 e7             	mov    %rsp,%rdi
       std::swap(planets, nextplanets);
       // printf("x=%f y=%f vx=%f vy=%f\n", planets[nplanets-1].x, planets[nplanets-1].y, planets[nplanets-1].vx, planets[nplanets-1].vy);
    }
    gettimeofday(&end, NULL);
-    2006:	31 f6                	xor    %esi,%esi
-    2008:	e8 83 01 00 00       	callq  2190 <gettimeofday@plt>
+    247d:	31 f6                	xor    %esi,%esi
+    247f:	e8 cc 01 00 00       	callq  2650 <gettimeofday@plt>
   return (end->tv_sec-start->tv_sec) + 1e-6*(end->tv_usec-start->tv_usec);
-    200d:	48 8b 04 24          	mov    (%rsp),%rax
-    2011:	48 8b 4c 24 08       	mov    0x8(%rsp),%rcx
-    2016:	48 2b 44 24 10       	sub    0x10(%rsp),%rax
-    201b:	0f 57 c0             	xorps  %xmm0,%xmm0
-    201e:	f2 48 0f 2a c0       	cvtsi2sd %rax,%xmm0
-    2023:	48 2b 4c 24 18       	sub    0x18(%rsp),%rcx
-    2028:	0f 57 c9             	xorps  %xmm1,%xmm1
-    202b:	f2 48 0f 2a c9       	cvtsi2sd %rcx,%xmm1
-    2030:	f2 0f 59 0d 78 e6 ff 	mulsd  -0x1988(%rip),%xmm1        # 6b0 <_IO_stdin_used+0x10>
-    2037:	ff 
-    2038:	f2 0f 58 c8          	addsd  %xmm0,%xmm1
-    203c:	0f 57 c0             	xorps  %xmm0,%xmm0
-    203f:	f2 0f 5a c1          	cvtsd2ss %xmm1,%xmm0
+    2484:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
+    2489:	48 8b 4c 24 20       	mov    0x20(%rsp),%rcx
+    248e:	48 2b 44 24 28       	sub    0x28(%rsp),%rax
+    2493:	0f 57 c0             	xorps  %xmm0,%xmm0
+    2496:	f2 48 0f 2a c0       	cvtsi2sd %rax,%xmm0
+    249b:	48 2b 4c 24 30       	sub    0x30(%rsp),%rcx
+    24a0:	0f 57 c9             	xorps  %xmm1,%xmm1
+    24a3:	f2 48 0f 2a c9       	cvtsi2sd %rcx,%xmm1
+    24a8:	f2 0f 59 0d 90 e3 ff 	mulsd  -0x1c70(%rip),%xmm1        # 840 <_IO_stdin_used+0x10>
+    24af:	ff 
+    24b0:	f2 0f 58 c8          	addsd  %xmm0,%xmm1
+    24b4:	0f 57 c0             	xorps  %xmm0,%xmm0
+    24b7:	f2 0f 5a c1          	cvtsd2ss %xmm1,%xmm0
    printf("Total time to run simulation %0.6f seconds, final location %f %f\n", tdiff(&start, &end), planets[nplanets-1].x, planets[nplanets-1].y);
-    2043:	f3 0f 5a c0          	cvtss2sd %xmm0,%xmm0
-    2047:	48 63 05 ae 23 00 00 	movslq 0x23ae(%rip),%rax        # 43fc <nplanets>
-    204e:	48 8d 04 80          	lea    (%rax,%rax,4),%rax
-    2052:	f2 41 0f 10 4c c4 e0 	movsd  -0x20(%r12,%rax,8),%xmm1
-    2059:	f2 41 0f 10 54 c4 e8 	movsd  -0x18(%r12,%rax,8),%xmm2
-    2060:	48 8d 3d e9 e6 ff ff 	lea    -0x1917(%rip),%rdi        # 750 <_IO_stdin_used+0xb0>
-    2067:	b0 03                	mov    $0x3,%al
-    2069:	e8 e2 00 00 00       	callq  2150 <printf@plt>
+    24bb:	f3 0f 5a c0          	cvtss2sd %xmm0,%xmm0
+    24bf:	48 63 05 5e 24 00 00 	movslq 0x245e(%rip),%rax        # 4924 <nplanets>
+    24c6:	48 8d 04 80          	lea    (%rax,%rax,4),%rax
+    24ca:	f2 41 0f 10 4c c4 e0 	movsd  -0x20(%r12,%rax,8),%xmm1
+    24d1:	f2 41 0f 10 54 c4 e8 	movsd  -0x18(%r12,%rax,8),%xmm2
+    24d8:	48 8d 3d f1 e3 ff ff 	lea    -0x1c0f(%rip),%rdi        # 8d0 <_IO_stdin_used+0xa0>
+    24df:	b0 03                	mov    $0x3,%al
+    24e1:	e8 2a 01 00 00       	callq  2610 <printf@plt>
+    24e6:	31 c0                	xor    %eax,%eax
 
    return 0;   
-    206e:	44 89 f8             	mov    %r15d,%eax
-    2071:	48 83 c4 48          	add    $0x48,%rsp
-    2075:	5b                   	pop    %rbx
-    2076:	41 5c                	pop    %r12
-    2078:	41 5d                	pop    %r13
-    207a:	41 5e                	pop    %r14
-    207c:	41 5f                	pop    %r15
-    207e:	5d                   	pop    %rbp
-    207f:	c3                   	retq   
+    24e8:	48 83 c4 38          	add    $0x38,%rsp
+    24ec:	5b                   	pop    %rbx
+    24ed:	41 5c                	pop    %r12
+    24ef:	41 5d                	pop    %r13
+    24f1:	41 5e                	pop    %r14
+    24f3:	41 5f                	pop    %r15
+    24f5:	5d                   	pop    %rbp
+    24f6:	c3                   	retq   
+    24f7:	cc                   	int3   
+    24f8:	cc                   	int3   
+    24f9:	cc                   	int3   
+    24fa:	cc                   	int3   
+    24fb:	cc                   	int3   
+    24fc:	cc                   	int3   
+    24fd:	cc                   	int3   
+    24fe:	cc                   	int3   
+    24ff:	cc                   	int3   
 
-0000000000002080 <__libc_csu_init>:
-    2080:	f3 0f 1e fa          	endbr64 
-    2084:	41 57                	push   %r15
-    2086:	4c 8d 3d 1b 11 00 00 	lea    0x111b(%rip),%r15        # 31a8 <__frame_dummy_init_array_entry>
-    208d:	41 56                	push   %r14
-    208f:	49 89 d6             	mov    %rdx,%r14
-    2092:	41 55                	push   %r13
-    2094:	49 89 f5             	mov    %rsi,%r13
-    2097:	41 54                	push   %r12
-    2099:	41 89 fc             	mov    %edi,%r12d
-    209c:	55                   	push   %rbp
-    209d:	48 8d 2d 0c 11 00 00 	lea    0x110c(%rip),%rbp        # 31b0 <_DYNAMIC>
-    20a4:	53                   	push   %rbx
-    20a5:	4c 29 fd             	sub    %r15,%rbp
-    20a8:	48 83 ec 08          	sub    $0x8,%rsp
-    20ac:	e8 47 00 00 00       	callq  20f8 <_init>
-    20b1:	48 c1 fd 03          	sar    $0x3,%rbp
-    20b5:	74 1f                	je     20d6 <__libc_csu_init+0x56>
-    20b7:	31 db                	xor    %ebx,%ebx
-    20b9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-    20c0:	4c 89 f2             	mov    %r14,%rdx
-    20c3:	4c 89 ee             	mov    %r13,%rsi
-    20c6:	44 89 e7             	mov    %r12d,%edi
-    20c9:	41 ff 14 df          	callq  *(%r15,%rbx,8)
-    20cd:	48 83 c3 01          	add    $0x1,%rbx
-    20d1:	48 39 dd             	cmp    %rbx,%rbp
-    20d4:	75 ea                	jne    20c0 <__libc_csu_init+0x40>
-    20d6:	48 83 c4 08          	add    $0x8,%rsp
-    20da:	5b                   	pop    %rbx
-    20db:	5d                   	pop    %rbp
-    20dc:	41 5c                	pop    %r12
-    20de:	41 5d                	pop    %r13
-    20e0:	41 5e                	pop    %r14
-    20e2:	41 5f                	pop    %r15
-    20e4:	c3                   	retq   
-    20e5:	66 66 2e 0f 1f 84 00 	data16 nopw %cs:0x0(%rax,%rax,1)
-    20ec:	00 00 00 00 
+0000000000002500 <__libc_csu_init>:
+    2500:	f3 0f 1e fa          	endbr64 
+    2504:	41 57                	push   %r15
+    2506:	4c 8d 3d 5b 11 00 00 	lea    0x115b(%rip),%r15        # 3668 <__frame_dummy_init_array_entry>
+    250d:	41 56                	push   %r14
+    250f:	49 89 d6             	mov    %rdx,%r14
+    2512:	41 55                	push   %r13
+    2514:	49 89 f5             	mov    %rsi,%r13
+    2517:	41 54                	push   %r12
+    2519:	41 89 fc             	mov    %edi,%r12d
+    251c:	55                   	push   %rbp
+    251d:	48 8d 2d 4c 11 00 00 	lea    0x114c(%rip),%rbp        # 3670 <__init_array_end>
+    2524:	53                   	push   %rbx
+    2525:	4c 29 fd             	sub    %r15,%rbp
+    2528:	48 83 ec 08          	sub    $0x8,%rsp
+    252c:	e8 47 00 00 00       	callq  2578 <_init>
+    2531:	48 c1 fd 03          	sar    $0x3,%rbp
+    2535:	74 1f                	je     2556 <__libc_csu_init+0x56>
+    2537:	31 db                	xor    %ebx,%ebx
+    2539:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+    2540:	4c 89 f2             	mov    %r14,%rdx
+    2543:	4c 89 ee             	mov    %r13,%rsi
+    2546:	44 89 e7             	mov    %r12d,%edi
+    2549:	41 ff 14 df          	callq  *(%r15,%rbx,8)
+    254d:	48 83 c3 01          	add    $0x1,%rbx
+    2551:	48 39 dd             	cmp    %rbx,%rbp
+    2554:	75 ea                	jne    2540 <__libc_csu_init+0x40>
+    2556:	48 83 c4 08          	add    $0x8,%rsp
+    255a:	5b                   	pop    %rbx
+    255b:	5d                   	pop    %rbp
+    255c:	41 5c                	pop    %r12
+    255e:	41 5d                	pop    %r13
+    2560:	41 5e                	pop    %r14
+    2562:	41 5f                	pop    %r15
+    2564:	c3                   	retq   
+    2565:	66 66 2e 0f 1f 84 00 	data16 nopw %cs:0x0(%rax,%rax,1)
+    256c:	00 00 00 00 
 
-00000000000020f0 <__libc_csu_fini>:
-    20f0:	f3 0f 1e fa          	endbr64 
-    20f4:	c3                   	retq   
+0000000000002570 <__libc_csu_fini>:
+    2570:	f3 0f 1e fa          	endbr64 
+    2574:	c3                   	retq   
 
 Disassembly of section .init:
 
-00000000000020f8 <_init>:
-    20f8:	f3 0f 1e fa          	endbr64 
-    20fc:	48 83 ec 08          	sub    $0x8,%rsp
-    2100:	48 8b 05 71 12 00 00 	mov    0x1271(%rip),%rax        # 3378 <__gmon_start__@Base>
-    2107:	48 85 c0             	test   %rax,%rax
-    210a:	74 02                	je     210e <_init+0x16>
-    210c:	ff d0                	callq  *%rax
-    210e:	48 83 c4 08          	add    $0x8,%rsp
-    2112:	c3                   	retq   
+0000000000002578 <_init>:
+    2578:	f3 0f 1e fa          	endbr64 
+    257c:	48 83 ec 08          	sub    $0x8,%rsp
+    2580:	48 8b 05 f9 12 00 00 	mov    0x12f9(%rip),%rax        # 3880 <__gmon_start__@Base>
+    2587:	48 85 c0             	test   %rax,%rax
+    258a:	74 02                	je     258e <_init+0x16>
+    258c:	ff d0                	callq  *%rax
+    258e:	48 83 c4 08          	add    $0x8,%rsp
+    2592:	c3                   	retq   
 
 Disassembly of section .fini:
 
-0000000000002114 <_fini>:
-    2114:	f3 0f 1e fa          	endbr64 
-    2118:	48 83 ec 08          	sub    $0x8,%rsp
-    211c:	48 83 c4 08          	add    $0x8,%rsp
-    2120:	c3                   	retq   
+0000000000002594 <_fini>:
+    2594:	f3 0f 1e fa          	endbr64 
+    2598:	48 83 ec 08          	sub    $0x8,%rsp
+    259c:	48 83 c4 08          	add    $0x8,%rsp
+    25a0:	c3                   	retq   
 
 Disassembly of section .plt:
 
-0000000000002130 <__cxa_finalize@plt-0x10>:
-    2130:	ff 35 82 22 00 00    	pushq  0x2282(%rip)        # 43b8 <__TMC_END__+0x8>
-    2136:	ff 25 84 22 00 00    	jmpq   *0x2284(%rip)        # 43c0 <__TMC_END__+0x10>
-    213c:	0f 1f 40 00          	nopl   0x0(%rax)
+00000000000025b0 <__cxa_finalize@plt-0x10>:
+    25b0:	ff 35 0a 23 00 00    	pushq  0x230a(%rip)        # 48c0 <__TMC_END__+0x8>
+    25b6:	ff 25 0c 23 00 00    	jmpq   *0x230c(%rip)        # 48c8 <__TMC_END__+0x10>
+    25bc:	0f 1f 40 00          	nopl   0x0(%rax)
 
-0000000000002140 <__cxa_finalize@plt>:
-    2140:	ff 25 82 22 00 00    	jmpq   *0x2282(%rip)        # 43c8 <__cxa_finalize@GLIBC_2.2.5>
-    2146:	68 00 00 00 00       	pushq  $0x0
-    214b:	e9 e0 ff ff ff       	jmpq   2130 <_fini+0x1c>
+00000000000025c0 <__cxa_finalize@plt>:
+    25c0:	ff 25 0a 23 00 00    	jmpq   *0x230a(%rip)        # 48d0 <__cxa_finalize@GLIBC_2.2.5>
+    25c6:	68 00 00 00 00       	pushq  $0x0
+    25cb:	e9 e0 ff ff ff       	jmpq   25b0 <_fini+0x1c>
 
-0000000000002150 <printf@plt>:
-    2150:	ff 25 7a 22 00 00    	jmpq   *0x227a(%rip)        # 43d0 <printf@GLIBC_2.2.5>
-    2156:	68 01 00 00 00       	pushq  $0x1
-    215b:	e9 d0 ff ff ff       	jmpq   2130 <_fini+0x1c>
+00000000000025d0 <memcpy@plt>:
+    25d0:	ff 25 02 23 00 00    	jmpq   *0x2302(%rip)        # 48d8 <memcpy@GLIBC_2.14>
+    25d6:	68 01 00 00 00       	pushq  $0x1
+    25db:	e9 d0 ff ff ff       	jmpq   25b0 <_fini+0x1c>
 
-0000000000002160 <strtol@plt>:
-    2160:	ff 25 72 22 00 00    	jmpq   *0x2272(%rip)        # 43d8 <strtol@GLIBC_2.2.5>
-    2166:	68 02 00 00 00       	pushq  $0x2
-    216b:	e9 c0 ff ff ff       	jmpq   2130 <_fini+0x1c>
+00000000000025e0 <__kmpc_fork_call@plt>:
+    25e0:	ff 25 fa 22 00 00    	jmpq   *0x22fa(%rip)        # 48e0 <__kmpc_fork_call@VERSION>
+    25e6:	68 02 00 00 00       	pushq  $0x2
+    25eb:	e9 c0 ff ff ff       	jmpq   25b0 <_fini+0x1c>
 
-0000000000002170 <malloc@plt>:
-    2170:	ff 25 6a 22 00 00    	jmpq   *0x226a(%rip)        # 43e0 <malloc@GLIBC_2.2.5>
-    2176:	68 03 00 00 00       	pushq  $0x3
-    217b:	e9 b0 ff ff ff       	jmpq   2130 <_fini+0x1c>
+00000000000025f0 <__kmpc_dispatch_init_4@plt>:
+    25f0:	ff 25 f2 22 00 00    	jmpq   *0x22f2(%rip)        # 48e8 <__kmpc_dispatch_init_4@VERSION>
+    25f6:	68 03 00 00 00       	pushq  $0x3
+    25fb:	e9 b0 ff ff ff       	jmpq   25b0 <_fini+0x1c>
 
-0000000000002180 <pow@plt>:
-    2180:	ff 25 62 22 00 00    	jmpq   *0x2262(%rip)        # 43e8 <pow@GLIBC_2.29>
-    2186:	68 04 00 00 00       	pushq  $0x4
-    218b:	e9 a0 ff ff ff       	jmpq   2130 <_fini+0x1c>
+0000000000002600 <__kmpc_dispatch_next_4@plt>:
+    2600:	ff 25 ea 22 00 00    	jmpq   *0x22ea(%rip)        # 48f0 <__kmpc_dispatch_next_4@VERSION>
+    2606:	68 04 00 00 00       	pushq  $0x4
+    260b:	e9 a0 ff ff ff       	jmpq   25b0 <_fini+0x1c>
 
-0000000000002190 <gettimeofday@plt>:
-    2190:	ff 25 5a 22 00 00    	jmpq   *0x225a(%rip)        # 43f0 <gettimeofday@GLIBC_2.2.5>
-    2196:	68 05 00 00 00       	pushq  $0x5
-    219b:	e9 90 ff ff ff       	jmpq   2130 <_fini+0x1c>
+0000000000002610 <printf@plt>:
+    2610:	ff 25 e2 22 00 00    	jmpq   *0x22e2(%rip)        # 48f8 <printf@GLIBC_2.2.5>
+    2616:	68 05 00 00 00       	pushq  $0x5
+    261b:	e9 90 ff ff ff       	jmpq   25b0 <_fini+0x1c>
+
+0000000000002620 <strtol@plt>:
+    2620:	ff 25 da 22 00 00    	jmpq   *0x22da(%rip)        # 4900 <strtol@GLIBC_2.2.5>
+    2626:	68 06 00 00 00       	pushq  $0x6
+    262b:	e9 80 ff ff ff       	jmpq   25b0 <_fini+0x1c>
+
+0000000000002630 <malloc@plt>:
+    2630:	ff 25 d2 22 00 00    	jmpq   *0x22d2(%rip)        # 4908 <malloc@GLIBC_2.2.5>
+    2636:	68 07 00 00 00       	pushq  $0x7
+    263b:	e9 70 ff ff ff       	jmpq   25b0 <_fini+0x1c>
+
+0000000000002640 <pow@plt>:
+    2640:	ff 25 ca 22 00 00    	jmpq   *0x22ca(%rip)        # 4910 <pow@GLIBC_2.29>
+    2646:	68 08 00 00 00       	pushq  $0x8
+    264b:	e9 60 ff ff ff       	jmpq   25b0 <_fini+0x1c>
+
+0000000000002650 <gettimeofday@plt>:
+    2650:	ff 25 c2 22 00 00    	jmpq   *0x22c2(%rip)        # 4918 <gettimeofday@GLIBC_2.2.5>
+    2656:	68 09 00 00 00       	pushq  $0x9
+    265b:	e9 50 ff ff ff       	jmpq   25b0 <_fini+0x1c>
