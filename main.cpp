@@ -66,23 +66,24 @@ double randomDouble()
 void next(const PlanetCoords &planets, PlanetCoords &nextplanets, const double *planet_masses) {
    
    nextplanets = planets;
-   constexpr auto TILE_SIZE = 64UL / sizeof(double);
+   constexpr auto ELEMS_PER_CACHELINE = 64UL / sizeof(double);
+   constexpr auto TILE_SIZE = ELEMS_PER_CACHELINE * 8;
 
-   // #pragma omp parallel for schedule(static)
-   for (int t = 0; t < nplanets; t += TILE_SIZE) {
-      for (int i = t; i < t + TILE_SIZE; ++i) {
-         for (int j=0; j<nplanets; j++) {
-            double dx = planets.x[j] - planets.x[i];
-            double dy = planets.y[j] - planets.y[i];
-            double distSqr = dx*dx + dy*dy + 0.0001;
-            double invDist = planet_masses[i] * planet_masses[j] / sqrt(distSqr);
-            double invDist3 = invDist * invDist * invDist;
-            nextplanets.vx[i] += dt * dx * invDist3;
-            nextplanets.vy[i] += dt * dy * invDist3;
-         }
-         nextplanets.x[i] += dt * nextplanets.vx[i];
-         nextplanets.y[i] += dt * nextplanets.vy[i];
+   #pragma omp parallel for
+   #pragma omp tile sizes(TILE_SIZE)
+   for (int i = 0; i < nplanets; ++i) {
+      #pragma omp simd
+      for (int j=0; j<nplanets; j++) {
+         double dx = planets.x[j] - planets.x[i];
+         double dy = planets.y[j] - planets.y[i];
+         double distSqr = dx*dx + dy*dy + 0.0001;
+         double invDist = planet_masses[i] * planet_masses[j] / sqrt(distSqr);
+         double invDist3 = invDist * invDist * invDist;
+         nextplanets.vx[i] += dt * dx * invDist3;
+         nextplanets.vy[i] += dt * dy * invDist3;
       }
+      nextplanets.x[i] += dt * nextplanets.vx[i];
+      nextplanets.y[i] += dt * nextplanets.vy[i];
    }
 }
 
