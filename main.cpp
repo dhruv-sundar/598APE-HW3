@@ -10,7 +10,6 @@ float tdiff(struct timeval *start, struct timeval *end) {
 }
 
 struct Planet {
-   double mass;
    double x;
    double y;
    double vx;
@@ -40,7 +39,7 @@ int timesteps;
 constexpr double dt = 0.001;
 constexpr double G = 6.6743;
 
-void next(Planet * __restrict__ planets, Planet * __restrict__ nextplanets) {
+void next(Planet * __restrict__ planets, Planet * __restrict__ nextplanets, const double *planet_masses) {
    // for (int i=0; i<nplanets; i++) {
    //    nextplanets[i].vx = planets[i].vx;
    //    nextplanets[i].vy = planets[i].vy;
@@ -50,12 +49,13 @@ void next(Planet * __restrict__ planets, Planet * __restrict__ nextplanets) {
    // }
    std::memcpy(nextplanets, planets, sizeof(Planet) * nplanets);
    
+   #pragma omp parallel for
    for (int i=0; i<nplanets; i++) {
       for (int j=0; j<nplanets; j++) {
          double dx = planets[j].x - planets[i].x;
          double dy = planets[j].y - planets[i].y;
          double distSqr = dx*dx + dy*dy + 0.0001;
-         double invDist = planets[i].mass * planets[j].mass / sqrt(distSqr);
+         double invDist = planet_masses[i] * planet_masses[j] / sqrt(distSqr);
          double invDist3 = invDist * invDist * invDist;
          nextplanets[i].vx += dt * dx * invDist3;
          nextplanets[i].vy += dt * dy * invDist3;
@@ -78,8 +78,9 @@ int main(int argc, const char** argv){
 
    Planet* planets = (Planet*)malloc(sizeof(Planet) * nplanets);
    Planet* nextplanets = (Planet*)malloc(sizeof(Planet) * nplanets);
+   double *planet_masses = (double *)malloc(sizeof(double) * nplanets);
    for (int i=0; i<nplanets; i++) {
-      planets[i].mass = randomDouble() * 10 + 0.2;
+      planet_masses[i] = randomDouble() * 10 + 0.2;
       planets[i].x = ( randomDouble() - 0.5 ) * 100 * pow(1 + nplanets, 0.4);
       planets[i].y = ( randomDouble() - 0.5 ) * 100 * pow(1 + nplanets, 0.4);
       planets[i].vx = randomDouble() * 5 - 2.5;
@@ -89,7 +90,7 @@ int main(int argc, const char** argv){
    struct timeval start, end;
    gettimeofday(&start, NULL);
    for (int i=0; i<timesteps; i++) {
-      next(planets, nextplanets);
+      next(planets, nextplanets, planet_masses);
       std::swap(planets, nextplanets);
       // printf("x=%f y=%f vx=%f vy=%f\n", planets[nplanets-1].x, planets[nplanets-1].y, planets[nplanets-1].vx, planets[nplanets-1].vy);
    }
