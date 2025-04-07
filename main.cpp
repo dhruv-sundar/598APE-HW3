@@ -39,7 +39,7 @@ int timesteps;
 constexpr double dt = 0.001;
 constexpr double G = 6.6743;
 
-void next(Planet * __restrict__ planets, Planet * __restrict__ nextplanets, const double *planet_masses) {
+void next(const Planet * __restrict__ planets, Planet * __restrict__ nextplanets, const double *planet_masses) {
    // for (int i=0; i<nplanets; i++) {
    //    nextplanets[i].vx = planets[i].vx;
    //    nextplanets[i].vy = planets[i].vy;
