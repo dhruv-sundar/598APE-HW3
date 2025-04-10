@@ -69,6 +69,8 @@ void next(const PlanetCoords& planets, PlanetCoords& nextplanets, const double* 
 #pragma omp      parallel for
 #pragma omp tile sizes(TILE_SIZE)
     for (int i = 0; i < nplanets; ++i) {
+        double accum_vx = 0;
+        double accum_vy = 0;
 #pragma omp simd
         for (int j = 0; j < nplanets; j++) {
             double dx       = planets.x[j] - planets.x[i];
@@ -76,11 +78,14 @@ void next(const PlanetCoords& planets, PlanetCoords& nextplanets, const double* 
             double distSqr  = dx * dx + dy * dy + 0.0001;
             double invDist  = planet_masses[i] * planet_masses[j] / sqrt(distSqr);
             double invDist3 = invDist * invDist * invDist;
-            nextplanets.vx[i] += dt * dx * invDist3;
-            nextplanets.vy[i] += dt * dy * invDist3;
+            accum_vx += dt * dx * invDist3;
+            accum_vy += dt * dy * invDist3;
         }
-        nextplanets.x[i] += dt * nextplanets.vx[i];
-        nextplanets.y[i] += dt * nextplanets.vy[i];
+        nextplanets.x[i] += dt * accum_vx;
+        nextplanets.y[i] += dt * accum_vy;
+
+        nextplanets.vx[i] += accum_vx;
+        nextplanets.vy[i] += accum_vy;
     }
 }
 
