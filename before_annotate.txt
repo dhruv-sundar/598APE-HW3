@@ -1,0 +1,441 @@
+ Percent |	Source code & Disassembly of main.exe for cpu-clock:pppH (109899 samples, percent: local period)
+----------------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3    Disassembly of section .text:
+         :
+         : 5    0000000000001360 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]>:
+         : 6    next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]:
+         : 69   void next(const PlanetCoords& planets, PlanetCoords& nextplanets, const double* planet_masses) {
+         : 70   nextplanets                        = planets;
+         : 71   constexpr auto ELEMS_PER_CACHELINE = 64UL / sizeof(double);
+         : 72   constexpr auto TILE_SIZE           = ELEMS_PER_CACHELINE * 8;
+         :
+         : 74   #pragma omp      parallel for
+    0.00 :   1360:   push   %rbp
+    0.00 :   1361:   push   %r15
+    0.00 :   1363:   push   %r14
+    0.00 :   1365:   push   %r13
+    0.00 :   1367:   push   %r12
+    0.00 :   1369:   push   %rbx
+    0.00 :   136a:   sub    $0x68,%rsp
+    0.00 :   136e:   mov    %rcx,0x38(%rsp)
+    0.00 :   1373:   mov    %rdx,0x30(%rsp)
+         : 71   #pragma omp tile sizes(TILE_SIZE)
+         : 72   for (int i = 0; i < nplanets; ++i) {
+    0.00 :   1378:   movslq 0x3d0d(%rip),%r14        # 508c <nplanets>
+         : 74   next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined_debug__]:
+    0.00 :   137f:   test   %r14,%r14
+         : 70   #pragma omp tile sizes(TILE_SIZE)
+    0.00 :   1382:   jle    1414 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0xb4>
+    0.00 :   1388:   mov    %r8,%r12
+         : 71   for (int i = 0; i < nplanets; ++i) {
+    0.00 :   138b:   lea    0x3f(%r14),%ebx
+    0.00 :   138f:   shr    $0x6,%ebx
+    0.00 :   1392:   dec    %ebx
+    0.00 :   1394:   movl   $0x0,0x2c(%rsp)
+    0.00 :   139c:   mov    %ebx,0x1c(%rsp)
+    0.00 :   13a0:   movl   $0x1,0x4c(%rsp)
+    0.00 :   13a8:   movl   $0x0,0x48(%rsp)
+         : 70   #pragma omp tile sizes(TILE_SIZE)
+    0.00 :   13b0:   mov    (%rdi),%esi
+         : 69   #pragma omp      parallel for
+    0.00 :   13b2:   sub    $0x8,%rsp
+    0.00 :   13b6:   lea    0x54(%rsp),%rax
+    0.00 :   13bb:   lea    0x39ae(%rip),%rdi        # 4d70 <__do_global_dtors_aux_fini_array_entry+0x8>
+    0.00 :   13c2:   lea    0x50(%rsp),%rcx
+    0.00 :   13c7:   lea    0x34(%rsp),%r8
+    0.00 :   13cc:   lea    0x24(%rsp),%r9
+    0.00 :   13d1:   mov    %esi,0x4c(%rsp)
+    0.00 :   13d5:   mov    $0x22,%edx
+    0.00 :   13da:   push   $0x1
+    0.00 :   13dc:   push   $0x1
+    0.00 :   13de:   push   %rax
+    0.00 :   13df:   call   10a0 <__kmpc_for_static_init_4@plt>
+    0.00 :   13e4:   add    $0x20,%rsp
+         : 71   for (int i = 0; i < nplanets; ++i) {
+    0.00 :   13e8:   mov    0x1c(%rsp),%eax
+    0.00 :   13ec:   cmp    %ebx,%eax
+    0.00 :   13ee:   cmovl  %eax,%ebx
+    0.00 :   13f1:   mov    %ebx,0x1c(%rsp)
+    0.00 :   13f5:   mov    0x2c(%rsp),%eax
+    0.00 :   13f9:   mov    %ebx,0x18(%rsp)
+         : 70   #pragma omp tile sizes(TILE_SIZE)
+    0.00 :   13fd:   cmp    %ebx,%eax
+    0.00 :   13ff:   jle    1423 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0xc3>
+         : 69   #pragma omp      parallel for
+    0.00 :   1401:   lea    0x3980(%rip),%rdi        # 4d88 <__do_global_dtors_aux_fini_array_entry+0x20>
+    0.00 :   1408:   mov    0x44(%rsp),%esi
+    0.00 :   140c:   vzeroupper
+    0.00 :   140f:   call   1030 <__kmpc_for_static_fini@plt>
+         : 74   next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]:
+    0.00 :   1414:   add    $0x68,%rsp
+    0.00 :   1418:   pop    %rbx
+    0.00 :   1419:   pop    %r12
+    0.00 :   141b:   pop    %r13
+    0.00 :   141d:   pop    %r14
+    0.00 :   141f:   pop    %r15
+    0.00 :   1421:   pop    %rbp
+    0.00 :   1422:   ret
+    0.00 :   1423:   mov    0x3c62(%rip),%r9d        # 508c <nplanets>
+         : 78   next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined_debug__]:
+    0.00 :   142a:   mov    %eax,%ebp
+    0.00 :   142c:   shl    $0x6,%ebp
+    0.00 :   142f:   incl   0x18(%rsp)
+    0.00 :   1433:   mov    (%r12),%rdx
+    0.00 :   1437:   mov    0x8(%r12),%rsi
+    0.00 :   143c:   mov    0x10(%r12),%rdi
+    0.00 :   1441:   mov    0x18(%r12),%r8
+    0.00 :   1446:   test   %r9d,%r9d
+    0.00 :   1449:   mov    %r14,0x20(%rsp)
+    0.00 :   144e:   jle    1837 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x4d7>
+    0.00 :   1454:   mov    %r9d,%r10d
+    0.00 :   1457:   mov    %r10d,%r11d
+    0.00 :   145a:   and    $0x7ffffff0,%r11d
+    0.00 :   1461:   mov    %r9d,%r12d
+    0.00 :   1464:   shr    $0x4,%r12d
+    0.00 :   1468:   and    $0x7ffffff,%r12d
+    0.00 :   146f:   shl    $0x7,%r12
+    0.00 :   1473:   vmovsd 0x1ba5(%rip),%xmm10        # 3020 <_IO_stdin_used+0x20>
+    0.00 :   147b:   vmovsd 0x1ba5(%rip),%xmm11        # 3028 <_IO_stdin_used+0x28>
+    0.00 :   1483:   vbroadcastsd 0x1b94(%rip),%ymm4        # 3020 <_IO_stdin_used+0x20>
+    0.00 :   148c:   vbroadcastsd 0x1b93(%rip),%ymm5        # 3028 <_IO_stdin_used+0x28>
+    0.00 :   1495:   jmp    14b9 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x159>
+    0.00 :   1497:   nopw   0x0(%rax,%rax,1)
+         : 70   #pragma omp tile sizes(TILE_SIZE)
+    0.00 :   14a0:   inc    %rax
+    0.00 :   14a3:   mov    0xc(%rsp),%ebp
+    0.00 :   14a7:   add    $0x40,%ebp
+    0.00 :   14aa:   cmp    %eax,0x18(%rsp)
+    0.00 :   14ae:   mov    0x20(%rsp),%r14
+    0.00 :   14b3:   je     1401 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0xa1>
+    0.00 :   14b9:   mov    %ebp,0xc(%rsp)
+         : 71   for (int i = 0; i < nplanets; ++i) {
+    0.00 :   14bd:   mov    %eax,%ecx
+    0.00 :   14bf:   shl    $0x6,%ecx
+    0.00 :   14c2:   movslq %ecx,%rcx
+    0.00 :   14c5:   lea    0x40(%rcx),%rbx
+    0.00 :   14c9:   cmp    %r14,%rbx
+    0.00 :   14cc:   cmovae %r14,%rbx
+    0.00 :   14d0:   cmp    %rcx,%rbx
+    0.00 :   14d3:   jbe    14a0 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x140>
+    0.00 :   14d5:   movslq 0xc(%rsp),%r14
+    0.00 :   14da:   mov    0x30(%rsp),%rcx
+    0.00 :   14df:   mov    (%rcx),%r15
+    0.00 :   14e2:   mov    0x8(%rcx),%rbp
+    0.00 :   14e6:   mov    0x38(%rsp),%rcx
+    0.00 :   14eb:   mov    (%rcx),%r13
+    0.00 :   14ee:   jmp    1536 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x1d6>
+    0.00 :   14f0:   vmovsd (%rdx,%r14,8),%xmm0
+         : 84   double dx       = planets.x[j] - planet_x;
+         : 85   double dy       = planets.y[j] - planet_y;
+         : 86   double distSqr  = dx * dx + dy * dy + 0.0001;
+         : 87   double invDist  = planet_mass * planet_masses[j] / sqrt(distSqr);
+         : 88   double invDist3 = invDist * invDist * invDist;
+         : 89   accum_vx += dt * dx * invDist3;
+    0.02 :   14f6:   vfmadd231sd %xmm11,%xmm13,%xmm0
+    0.03 :   14fb:   vmovsd %xmm0,(%rdx,%r14,8)
+    0.02 :   1501:   vmovsd (%rsi,%r14,8),%xmm0
+         : 85   accum_vy += dt * dy * invDist3;
+    0.01 :   1507:   vfmadd231sd %xmm11,%xmm9,%xmm0
+    0.00 :   150c:   vmovsd %xmm0,(%rsi,%r14,8)
+         : 87   }
+         : 88   nextplanets.x[i] += dt * accum_vx;
+    0.01 :   1512:   vaddsd (%rdi,%r14,8),%xmm13,%xmm0
+    0.01 :   1518:   vmovsd %xmm0,(%rdi,%r14,8)
+         : 88   nextplanets.y[i] += dt * accum_vy;
+    0.02 :   151e:   vaddsd (%r8,%r14,8),%xmm9,%xmm0
+    0.01 :   1524:   vmovsd %xmm0,(%r8,%r14,8)
+         : 71   for (int i = 0; i < nplanets; ++i) {
+    0.00 :   152a:   inc    %r14
+    0.00 :   152d:   cmp    %r14,%rbx
+    0.00 :   1530:   jbe    14a0 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x140>
+    0.00 :   1536:   vmovsd (%r15,%r14,8),%xmm6
+    0.12 :   153c:   vmovsd 0x0(%rbp,%r14,8),%xmm7
+    0.09 :   1543:   vmovsd 0x0(%r13,%r14,8),%xmm8
+    0.01 :   154a:   cmp    $0x10,%r9d
+         : 74   double planet_x = planets.x[i];
+    0.00 :   154e:   jae    1570 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x210>
+    0.00 :   1550:   vxorpd %xmm13,%xmm13,%xmm13
+    0.00 :   1555:   xor    %ecx,%ecx
+    0.00 :   1557:   vxorpd %xmm9,%xmm9,%xmm9
+    0.00 :   155c:   jmp    17e0 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x480>
+    0.00 :   1561:   data16 data16 data16 data16 data16 cs nopw 0x0(%rax,%rax,1)
+    0.00 :   1570:   vbroadcastsd %xmm6,%ymm13
+    0.01 :   1575:   vbroadcastsd %xmm7,%ymm15
+    0.01 :   157a:   vbroadcastsd %xmm8,%ymm19
+    0.00 :   1580:   xor    %ecx,%ecx
+    0.00 :   1582:   vmovapd 0x1af6(%rip),%ymm9        # 3080 <_IO_stdin_used+0x80>
+    0.00 :   158a:   vmovapd %ymm9,%ymm14
+    0.01 :   158f:   vbroadcastsd 0x1a80(%rip),%ymm12        # 3018 <_IO_stdin_used+0x18>
+    0.01 :   1598:   vmovapd %ymm12,%ymm16
+    0.00 :   159e:   vmovapd %ymm12,%ymm17
+    0.00 :   15a4:   vmovapd %ymm12,%ymm18
+    0.01 :   15aa:   vmovapd %ymm12,%ymm10
+    0.01 :   15af:   vmovapd %ymm12,%ymm11
+    0.00 :   15b4:   data16 data16 cs nopw 0x0(%rax,%rax,1)
+         : 76   double planet_mass = planet_masses[i];
+    0.03 :   15c0:   vmovupd (%r15,%rcx,1),%ymm20
+    4.33 :   15c7:   vmovupd 0x20(%r15,%rcx,1),%ymm21
+    0.95 :   15cf:   vmovupd 0x40(%r15,%rcx,1),%ymm22
+    3.39 :   15d7:   vmovupd 0x60(%r15,%rcx,1),%ymm23
+         : 77   #pragma omp simd
+    0.14 :   15df:   vmovupd 0x0(%rbp,%rcx,1),%ymm24
+    4.51 :   15e7:   vmovupd 0x20(%rbp,%rcx,1),%ymm25
+         : 76   double planet_mass = planet_masses[i];
+    0.93 :   15ef:   vsubpd %ymm13,%ymm20,%ymm20
+         : 77   #pragma omp simd
+    0.10 :   15f5:   vmovupd 0x40(%rbp,%rcx,1),%ymm26
+    3.87 :   15fd:   vmovupd 0x60(%rbp,%rcx,1),%ymm27
+         : 76   double planet_mass = planet_masses[i];
+    0.35 :   1605:   vsubpd %ymm13,%ymm21,%ymm21
+    0.80 :   160b:   vsubpd %ymm13,%ymm22,%ymm22
+         : 77   #pragma omp simd
+    0.13 :   1611:   vsubpd %ymm15,%ymm24,%ymm24
+    0.16 :   1617:   vsubpd %ymm15,%ymm25,%ymm25
+    0.27 :   161d:   vsubpd %ymm15,%ymm26,%ymm26
+    0.86 :   1623:   vsubpd %ymm15,%ymm27,%ymm27
+         : 76   double planet_mass = planet_masses[i];
+    0.32 :   1629:   vsubpd %ymm13,%ymm23,%ymm23
+         : 78   for (int j = 0; j < nplanets; j++) {
+    0.13 :   162f:   vmulpd %ymm24,%ymm24,%ymm28
+    0.18 :   1635:   vmulpd %ymm25,%ymm25,%ymm29
+    0.76 :   163b:   vmulpd %ymm26,%ymm26,%ymm30
+    0.12 :   1641:   vmulpd %ymm27,%ymm27,%ymm31
+    0.19 :   1647:   vfmadd231pd %ymm20,%ymm20,%ymm28
+    0.18 :   164d:   vfmadd231pd %ymm21,%ymm21,%ymm29
+    0.76 :   1653:   vfmadd231pd %ymm22,%ymm22,%ymm30
+    0.11 :   1659:   vfmadd231pd %ymm23,%ymm23,%ymm31
+    0.19 :   165f:   vaddpd %ymm4,%ymm28,%ymm28
+    0.20 :   1665:   vaddpd %ymm4,%ymm29,%ymm29
+    0.77 :   166b:   vaddpd %ymm4,%ymm30,%ymm30
+    0.14 :   1671:   vaddpd %ymm4,%ymm31,%ymm31
+         : 79   double dx       = planets.x[j] - planet_x;
+    0.23 :   1677:   vmulpd 0x0(%r13,%rcx,1),%ymm19,%ymm3
+    1.11 :   167f:   vmulpd 0x20(%r13,%rcx,1),%ymm19,%ymm2
+    0.13 :   1687:   vmulpd 0x40(%r13,%rcx,1),%ymm19,%ymm0
+    0.95 :   168f:   vmulpd 0x60(%r13,%rcx,1),%ymm19,%ymm1
+    0.12 :   1697:   vsqrtpd %ymm28,%ymm28
+    1.73 :   169d:   vdivpd %ymm28,%ymm3,%ymm3
+    9.76 :   16a3:   vsqrtpd %ymm29,%ymm28
+    1.92 :   16a9:   vdivpd %ymm28,%ymm2,%ymm2
+    7.84 :   16af:   vsqrtpd %ymm30,%ymm28
+   10.83 :   16b5:   vdivpd %ymm28,%ymm0,%ymm0
+   15.47 :   16bb:   vsqrtpd %ymm31,%ymm28
+    0.92 :   16c1:   vdivpd %ymm28,%ymm1,%ymm1
+         : 80   double dy       = planets.y[j] - planet_y;
+    7.63 :   16c7:   vmulpd %ymm3,%ymm3,%ymm28
+    0.04 :   16cd:   vmulpd %ymm2,%ymm2,%ymm29
+    0.21 :   16d3:   vmulpd %ymm0,%ymm0,%ymm30
+    0.45 :   16d9:   vmulpd %ymm1,%ymm1,%ymm31
+    3.27 :   16df:   vmulpd %ymm28,%ymm3,%ymm3
+    0.05 :   16e5:   vmulpd %ymm29,%ymm2,%ymm2
+    0.09 :   16eb:   vmulpd %ymm30,%ymm0,%ymm0
+    0.59 :   16f1:   vmulpd %ymm31,%ymm1,%ymm1
+         : 81   double distSqr  = dx * dx + dy * dy + 0.0001;
+    3.23 :   16f7:   vmulpd %ymm5,%ymm20,%ymm20
+    0.01 :   16fd:   vmulpd %ymm5,%ymm21,%ymm21
+    0.02 :   1703:   vmulpd %ymm5,%ymm22,%ymm22
+    0.14 :   1709:   vmulpd %ymm5,%ymm23,%ymm23
+    0.78 :   170f:   vfmadd231pd %ymm20,%ymm3,%ymm14
+    0.05 :   1715:   vfmadd231pd %ymm21,%ymm2,%ymm16
+    0.10 :   171b:   vfmadd231pd %ymm22,%ymm0,%ymm17
+         : 82   double invDist  = planet_mass * planet_masses[j] / sqrt(distSqr);
+    0.50 :   1721:   vmulpd %ymm5,%ymm24,%ymm20
+    0.82 :   1727:   vmulpd %ymm5,%ymm25,%ymm21
+    0.02 :   172d:   vmulpd %ymm5,%ymm26,%ymm22
+    0.04 :   1733:   vmulpd %ymm5,%ymm27,%ymm24
+         : 81   double distSqr  = dx * dx + dy * dy + 0.0001;
+    0.15 :   1739:   vfmadd231pd %ymm23,%ymm1,%ymm18
+         : 82   double invDist  = planet_mass * planet_masses[j] / sqrt(distSqr);
+    2.07 :   173f:   vfmadd231pd %ymm20,%ymm3,%ymm9
+    0.02 :   1745:   vfmadd231pd %ymm21,%ymm2,%ymm10
+    0.03 :   174b:   vfmadd231pd %ymm22,%ymm0,%ymm11
+    0.17 :   1751:   vfmadd231pd %ymm24,%ymm1,%ymm12
+         : 75   double planet_y = planets.y[i];
+    0.89 :   1757:   sub    $0xffffffffffffff80,%rcx
+    0.01 :   175b:   cmp    %rcx,%r12
+    0.00 :   175e:   jne    15c0 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x260>
+         : 74   double planet_x = planets.x[i];
+    0.00 :   1764:   vaddpd %ymm14,%ymm16,%ymm0
+    0.00 :   176a:   vaddpd %ymm0,%ymm17,%ymm0
+    0.02 :   1770:   vaddpd %ymm0,%ymm18,%ymm0
+    0.05 :   1776:   vshufpd $0x1,%xmm0,%xmm0,%xmm1
+    0.02 :   177b:   vaddsd %xmm1,%xmm0,%xmm1
+    0.06 :   177f:   vextractf128 $0x1,%ymm0,%xmm0
+    0.00 :   1785:   vaddsd %xmm0,%xmm1,%xmm1
+    0.05 :   1789:   vshufpd $0x1,%xmm0,%xmm0,%xmm0
+    0.00 :   178e:   vaddsd %xmm0,%xmm1,%xmm13
+    0.06 :   1792:   vaddpd %ymm9,%ymm10,%ymm0
+    0.00 :   1797:   vaddpd %ymm0,%ymm11,%ymm0
+    0.00 :   179b:   vaddpd %ymm0,%ymm12,%ymm0
+    0.00 :   179f:   vshufpd $0x1,%xmm0,%xmm0,%xmm1
+    0.02 :   17a4:   vaddsd %xmm1,%xmm0,%xmm1
+    0.00 :   17a8:   vextractf128 $0x1,%ymm0,%xmm0
+    0.00 :   17ae:   vaddsd %xmm0,%xmm1,%xmm1
+    0.00 :   17b2:   vshufpd $0x1,%xmm0,%xmm0,%xmm0
+    0.02 :   17b7:   vaddsd %xmm0,%xmm1,%xmm9
+    0.02 :   17bb:   mov    %r11,%rcx
+    0.00 :   17be:   cmp    %r10d,%r11d
+    0.00 :   17c1:   vmovsd 0x1857(%rip),%xmm10        # 3020 <_IO_stdin_used+0x20>
+    0.00 :   17c9:   vmovsd 0x1857(%rip),%xmm11        # 3028 <_IO_stdin_used+0x28>
+    0.01 :   17d1:   je     14f0 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x190>
+    0.00 :   17d7:   nopw   0x0(%rax,%rax,1)
+         : 76   double planet_mass = planet_masses[i];
+    0.04 :   17e0:   vmovsd (%r15,%rcx,8),%xmm0
+    0.19 :   17e6:   vsubsd %xmm6,%xmm0,%xmm0
+         : 77   #pragma omp simd
+    0.08 :   17ea:   vmovsd 0x0(%rbp,%rcx,8),%xmm1
+    0.15 :   17f0:   vsubsd %xmm7,%xmm1,%xmm1
+         : 78   for (int j = 0; j < nplanets; j++) {
+    0.03 :   17f4:   vmulsd %xmm1,%xmm1,%xmm2
+    0.02 :   17f8:   vfmadd231sd %xmm0,%xmm0,%xmm2
+    0.09 :   17fd:   vaddsd %xmm2,%xmm10,%xmm2
+         : 79   double dx       = planets.x[j] - planet_x;
+    0.02 :   1801:   vsqrtsd %xmm2,%xmm2,%xmm2
+    0.09 :   1805:   vmulsd 0x0(%r13,%rcx,8),%xmm8,%xmm3
+    0.09 :   180c:   vdivsd %xmm2,%xmm3,%xmm2
+         : 80   double dy       = planets.y[j] - planet_y;
+    0.28 :   1810:   vmulsd %xmm2,%xmm2,%xmm3
+    0.19 :   1814:   vmulsd %xmm3,%xmm2,%xmm2
+         : 81   double distSqr  = dx * dx + dy * dy + 0.0001;
+    0.24 :   1818:   vmulsd %xmm0,%xmm11,%xmm0
+    0.05 :   181c:   vfmadd231sd %xmm0,%xmm2,%xmm13
+         : 82   double invDist  = planet_mass * planet_masses[j] / sqrt(distSqr);
+    0.34 :   1821:   vmulsd %xmm1,%xmm11,%xmm0
+    0.01 :   1825:   vfmadd231sd %xmm0,%xmm2,%xmm9
+         : 75   double planet_y = planets.y[i];
+    0.07 :   182a:   inc    %rcx
+    0.01 :   182d:   cmp    %rcx,%r10
+         : 74   double planet_x = planets.x[i];
+    0.00 :   1830:   jne    17e0 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x480>
+    0.01 :   1832:   jmp    14f0 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x190>
+    0.00 :   1837:   vxorpd %xmm0,%xmm0,%xmm0
+    0.00 :   183b:   vxorpd %xmm1,%xmm1,%xmm1
+    0.00 :   183f:   jmp    1860 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x500>
+    0.00 :   1841:   data16 data16 data16 data16 data16 cs nopw 0x0(%rax,%rax,1)
+         : 70   #pragma omp tile sizes(TILE_SIZE)
+    0.00 :   1850:   inc    %rax
+    0.00 :   1853:   add    $0x40,%ebp
+    0.00 :   1856:   cmp    %eax,0x18(%rsp)
+    0.00 :   185a:   je     1401 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0xa1>
+         : 71   for (int i = 0; i < nplanets; ++i) {
+    0.00 :   1860:   movslq %ebp,%r9
+    0.00 :   1863:   lea    0x40(%r9),%rcx
+    0.00 :   1867:   cmp    %r14,%rcx
+    0.00 :   186a:   cmovae %r14,%rcx
+    0.00 :   186e:   mov    %eax,%r10d
+    0.00 :   1871:   shl    $0x6,%r10d
+    0.00 :   1875:   movslq %r10d,%r11
+    0.00 :   1878:   lea    0x40(%r11),%r10
+    0.00 :   187c:   cmp    %r14,%r10
+    0.00 :   187f:   cmovae %r14,%r10
+    0.00 :   1883:   cmp    %r11,%r10
+    0.00 :   1886:   jbe    1850 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x4f0>
+    0.00 :   1888:   mov    %rcx,%r13
+    0.00 :   188b:   sub    %r9,%r13
+    0.00 :   188e:   cmp    $0x7,%r13
+    0.00 :   1892:   jbe    19e0 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x680>
+    0.00 :   1898:   mov    %ebp,0xc(%rsp)
+    0.00 :   189c:   lea    (%rdx,%r9,8),%r14
+    0.00 :   18a0:   lea    (%rdx,%rcx,8),%r15
+    0.00 :   18a4:   lea    (%rsi,%r9,8),%r12
+    0.00 :   18a8:   lea    (%rsi,%rcx,8),%rbp
+    0.00 :   18ac:   lea    (%rdi,%r9,8),%r11
+    0.00 :   18b0:   mov    %r11,0x58(%rsp)
+    0.00 :   18b5:   lea    (%rdi,%rcx,8),%r11
+    0.00 :   18b9:   mov    %r11,0x50(%rsp)
+    0.00 :   18be:   lea    (%r8,%r9,8),%rbx
+    0.00 :   18c2:   mov    %rbx,0x60(%rsp)
+    0.00 :   18c7:   lea    (%r8,%rcx,8),%rbx
+    0.00 :   18cb:   cmp    %rbp,%r14
+    0.00 :   18ce:   setb   0x38(%rsp)
+    0.00 :   18d3:   cmp    %r15,%r12
+    0.00 :   18d6:   setb   0x30(%rsp)
+    0.00 :   18db:   cmp    %r11,%r14
+    0.00 :   18de:   setb   0x17(%rsp)
+    0.00 :   18e3:   mov    0x58(%rsp),%r11
+    0.00 :   18e8:   cmp    %r15,%r11
+    0.00 :   18eb:   setb   0x16(%rsp)
+    0.00 :   18f0:   cmp    %rbx,%r14
+    0.00 :   18f3:   setb   0x15(%rsp)
+    0.00 :   18f8:   mov    0x60(%rsp),%r14
+    0.00 :   18fd:   cmp    %r15,%r14
+    0.00 :   1900:   setb   0x14(%rsp)
+    0.00 :   1905:   mov    0x50(%rsp),%r15
+    0.00 :   190a:   cmp    %r15,%r12
+    0.00 :   190d:   setb   0x13(%rsp)
+    0.00 :   1912:   cmp    %rbp,%r11
+    0.00 :   1915:   setb   0x12(%rsp)
+    0.00 :   191a:   cmp    %rbx,%r12
+    0.00 :   191d:   setb   %r12b
+    0.00 :   1921:   cmp    %rbp,%r14
+    0.00 :   1924:   setb   0x11(%rsp)
+    0.00 :   1929:   cmp    %rbx,%r11
+    0.00 :   192c:   setb   %bpl
+    0.00 :   1930:   cmp    %r15,%r14
+    0.00 :   1933:   setb   %r15b
+    0.00 :   1937:   movzbl 0x30(%rsp),%ebx
+    0.00 :   193c:   test   %bl,0x38(%rsp)
+    0.00 :   1940:   jne    19d6 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x676>
+    0.00 :   1946:   movzbl 0x16(%rsp),%ebx
+    0.00 :   194b:   and    %bl,0x17(%rsp)
+    0.00 :   194f:   jne    19d6 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x676>
+    0.00 :   1955:   movzbl 0x14(%rsp),%ebx
+    0.00 :   195a:   and    %bl,0x15(%rsp)
+    0.00 :   195e:   jne    19d6 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x676>
+    0.00 :   1960:   movzbl 0x12(%rsp),%ebx
+    0.00 :   1965:   and    %bl,0x13(%rsp)
+    0.00 :   1969:   mov    0x20(%rsp),%r14
+    0.00 :   196e:   jne    19db <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x67b>
+    0.00 :   1970:   and    0x11(%rsp),%r12b
+    0.00 :   1975:   jne    19db <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x67b>
+    0.00 :   1977:   and    %r15b,%bpl
+    0.00 :   197a:   mov    0xc(%rsp),%ebp
+    0.00 :   197e:   jne    19e0 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x680>
+    0.00 :   1980:   mov    %rcx,%rbx
+    0.00 :   1983:   and    $0xfffffffffffffffc,%rbx
+    0.00 :   1987:   and    $0x3,%ecx
+    0.00 :   198a:   sub    %rcx,%r13
+    0.00 :   198d:   add    %r9,%r13
+         : 84   accum_vx += dt * dx * invDist3;
+    0.00 :   1990:   vaddpd (%rdx,%r9,8),%ymm1,%ymm2
+    0.00 :   1996:   vmovupd %ymm2,(%rdx,%r9,8)
+         : 85   accum_vy += dt * dy * invDist3;
+    0.00 :   199c:   vaddpd (%rsi,%r9,8),%ymm1,%ymm2
+    0.00 :   19a2:   vmovupd %ymm2,(%rsi,%r9,8)
+         : 87   nextplanets.x[i] += dt * accum_vx;
+    0.00 :   19a8:   vaddpd (%rdi,%r9,8),%ymm1,%ymm2
+    0.00 :   19ae:   vmovupd %ymm2,(%rdi,%r9,8)
+         : 88   nextplanets.y[i] += dt * accum_vy;
+    0.00 :   19b4:   vaddpd (%r8,%r9,8),%ymm1,%ymm2
+    0.00 :   19ba:   vmovupd %ymm2,(%r8,%r9,8)
+    0.00 :   19c0:   add    $0x4,%r9
+    0.00 :   19c4:   cmp    %r9,%rbx
+    0.00 :   19c7:   jne    1990 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x630>
+    0.00 :   19c9:   mov    %r13,%r9
+         : 71   for (int i = 0; i < nplanets; ++i) {
+    0.00 :   19cc:   test   %rcx,%rcx
+    0.00 :   19cf:   jne    19e0 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x680>
+    0.00 :   19d1:   jmp    1850 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x4f0>
+    0.00 :   19d6:   mov    0x20(%rsp),%r14
+    0.00 :   19db:   mov    0xc(%rsp),%ebp
+    0.00 :   19df:   nop
+         : 84   accum_vx += dt * dx * invDist3;
+    0.00 :   19e0:   vaddsd (%rdx,%r9,8),%xmm0,%xmm2
+    0.00 :   19e6:   vmovsd %xmm2,(%rdx,%r9,8)
+         : 85   accum_vy += dt * dy * invDist3;
+    0.00 :   19ec:   vaddsd (%rsi,%r9,8),%xmm0,%xmm2
+    0.00 :   19f2:   vmovsd %xmm2,(%rsi,%r9,8)
+         : 87   nextplanets.x[i] += dt * accum_vx;
+    0.00 :   19f8:   vaddsd (%rdi,%r9,8),%xmm0,%xmm2
+    0.00 :   19fe:   vmovsd %xmm2,(%rdi,%r9,8)
+         : 88   nextplanets.y[i] += dt * accum_vy;
+    0.00 :   1a04:   vaddsd (%r8,%r9,8),%xmm0,%xmm2
+    0.00 :   1a0a:   vmovsd %xmm2,(%r8,%r9,8)
+         : 71   for (int i = 0; i < nplanets; ++i) {
+    0.00 :   1a10:   inc    %r9
+    0.00 :   1a13:   cmp    %r9,%r10
+    0.00 :   1a16:   ja     19e0 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x680>
+    0.00 :   1a18:   jmp    1850 <next(PlanetCoords const&, PlanetCoords&, double const*) [clone .omp_outlined]+0x4f0>

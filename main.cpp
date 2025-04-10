@@ -79,7 +79,8 @@ void next(const PlanetCoords& planets, PlanetCoords& nextplanets, const double* 
             double dx       = planets.x[j] - planet_x;
             double dy       = planets.y[j] - planet_y;
             double distSqr  = dx * dx + dy * dy + 0.0001;
-            double invDist  = planet_mass * planet_masses[j] / sqrt(distSqr);
+            double sqrt_reciprocal = 1.0 / sqrt(distSqr);
+            double invDist  = planet_mass * planet_masses[j] * sqrt_reciprocal;
             double invDist3 = invDist * invDist * invDist;
             accum_vx += dt * dx * invDist3;
             accum_vy += dt * dy * invDist3;
