@@ -66,7 +66,7 @@ void next(const PlanetCoords& planets, PlanetCoords& nextplanets, const double* 
     constexpr auto ELEMS_PER_CACHELINE = 64UL / sizeof(double);
     constexpr auto TILE_SIZE           = ELEMS_PER_CACHELINE * 8;
 
-#pragma omp      parallel for
+#pragma omp parallel for schedule(dynamic)
 #pragma omp tile sizes(TILE_SIZE)
     for (int i = 0; i < nplanets; ++i) {
         double accum_vx = 0;
