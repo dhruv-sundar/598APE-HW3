@@ -66,30 +66,29 @@ void next(const PlanetCoords& planets, PlanetCoords& nextplanets, const double* 
     constexpr auto ELEMS_PER_CACHELINE = 64UL / sizeof(double);
     constexpr auto TILE_SIZE           = ELEMS_PER_CACHELINE * 8;
 
-#pragma omp parallel for schedule(dynamic)
+#pragma omp      parallel for schedule(dynamic)
 #pragma omp tile sizes(TILE_SIZE)
     for (int i = 0; i < nplanets; ++i) {
-        double accum_vx = 0;
-        double accum_vy = 0;
-        double planet_x = planets.x[i];
-        double planet_y = planets.y[i];
+        double accum_vx    = nextplanets.vx[i];
+        double accum_vy    = nextplanets.vy[i];
+        double planet_x    = planets.x[i];
+        double planet_y    = planets.y[i];
         double planet_mass = planet_masses[i];
-#pragma omp simd
         for (int j = 0; j < nplanets; j++) {
-            double dx       = planets.x[j] - planet_x;
-            double dy       = planets.y[j] - planet_y;
-            double distSqr  = dx * dx + dy * dy + 0.0001;
-            double sqrt_reciprocal = 1.0 / sqrt(distSqr);
-            double invDist  = planet_mass * planet_masses[j] * sqrt_reciprocal;
-            double invDist3 = invDist * invDist * invDist;
+            double dx              = planets.x[j] - planet_x;
+            double dy              = planets.y[j] - planet_y;
+            double distSqr         = dx * dx + dy * dy + 0.0001;
+            //double sqrt_reciprocal = 1.0 /;
+            double invDist         = planet_mass * planet_masses[j] /  sqrt(distSqr);
+            double invDist3        = invDist * invDist * invDist;
             accum_vx += dt * dx * invDist3;
             accum_vy += dt * dy * invDist3;
         }
         nextplanets.x[i] += dt * accum_vx;
         nextplanets.y[i] += dt * accum_vy;
 
-        nextplanets.vx[i] += accum_vx;
-        nextplanets.vy[i] += accum_vy;
+        nextplanets.vx[i] = accum_vx;
+        nextplanets.vy[i] = accum_vy;
     }
 }
 
@@ -113,7 +112,7 @@ int main(int argc, const char** argv) {
 
     struct timeval start, end;
     gettimeofday(&start, NULL);
-    for (int i = 0; i < (timesteps & ~0x1); i++) {
+    for (int i = 0; i < (timesteps / 2); i++) {
         next(planets, nextplanets, planet_masses);
         next(nextplanets, planets, planet_masses);
         // printf("x=%f y=%f vx=%f vy=%f\n", planets[nplanets-1].x, planets[nplanets-1].y,
@@ -123,8 +122,14 @@ int main(int argc, const char** argv) {
         next(planets, nextplanets, planet_masses);
     }
     gettimeofday(&end, NULL);
-    printf("Total time to run simulation %0.6f seconds, final location %f %f\n",
-           tdiff(&start, &end), nextplanets.x[nplanets - 1], nextplanets.y[nplanets - 1]);
+
+    if (timesteps & 0x1) {
+        printf("Total time to run simulation %0.6f seconds, final location %f %f\n",
+               tdiff(&start, &end), nextplanets.x[nplanets - 1], nextplanets.y[nplanets - 1]);
+    } else {
+        printf("Total time to run simulation %0.6f seconds, final location %f %f\n",
+               tdiff(&start, &end), planets.x[nplanets - 1], planets.y[nplanets - 1]);
+    }
 
     return 0;
 }
