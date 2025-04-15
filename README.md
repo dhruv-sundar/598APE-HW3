@@ -1,3 +1,20 @@
+# RUNNING THE CODE INSTRUCTIONS
+The paper refers to a final deviated, and a final result preserving version.
+
+The final commit with results preserved is hash `9c4cd0bde2ad9e0280f543bb488cfd68f8afeb18`
+
+The final commit with results deviated is hash `e4d42c2054df40d004f1e3e57fd53d25958a0e36`
+
+To reproduce the results, run the following commands:
+```bash
+git checkout <hash>
+make clean
+make
+./main.exe 1000 5000
+```
+
+The other test cases take pretty annoyingly long to run (1 billion timesteps) so I recommend running with 10k, 100k, 1M timesteps and seeing that it linearly scales, and extrapolate from there.
+
 # 598APE-HW3
 
 This repository contains code for homework 3 of 598APE.
