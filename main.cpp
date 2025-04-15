@@ -61,6 +61,35 @@ double randomDouble() {
     return ((next << 27) + next2) / (double)(1LL << 53);
 }
 
+void next_sequential(const PlanetCoords& planets, PlanetCoords& nextplanets,
+                     const double* planet_masses) {
+    nextplanets = planets;
+
+    for (int i = 0; i < nplanets; ++i) {
+        double accum_vx    = nextplanets.vx[i];
+        double accum_vy    = nextplanets.vy[i];
+        double planet_x    = planets.x[i];
+        double planet_y    = planets.y[i];
+        double planet_mass = planet_masses[i];
+#pragma omp simd
+        for (int j = 0; j < nplanets; j++) {
+            double dx              = planets.x[j] - planet_x;
+            double dy              = planets.y[j] - planet_y;
+            double distSqr         = dx * dx + dy * dy + 0.0001;
+            double sqrt_reciprocal = 1.0 / sqrt(distSqr);
+            double invDist         = planet_mass * planet_masses[j] * sqrt_reciprocal;
+            double invDist3        = invDist * invDist * invDist;
+            accum_vx += dt * dx * invDist3;
+            accum_vy += dt * dy * invDist3;
+        }
+        nextplanets.x[i] += dt * accum_vx;
+        nextplanets.y[i] += dt * accum_vy;
+
+        nextplanets.vx[i] = accum_vx;
+        nextplanets.vy[i] = accum_vy;
+    }
+}
+
 void next(const PlanetCoords& planets, PlanetCoords& nextplanets, const double* planet_masses) {
     nextplanets                        = planets;
     constexpr auto ELEMS_PER_CACHELINE = 64UL / sizeof(double);
@@ -113,12 +142,18 @@ int main(int argc, const char** argv) {
 
     struct timeval start, end;
     gettimeofday(&start, NULL);
-    for (int i = 0; i < (timesteps / 2); i++) {
-        next(planets, nextplanets, planet_masses);
-        next(nextplanets, planets, planet_masses);
-        // printf("x=%f y=%f vx=%f vy=%f\n", planets[nplanets-1].x, planets[nplanets-1].y,
-        // planets[nplanets-1].vx, planets[nplanets-1].vy);
+    if (nplanets > 32) {
+        for (int i = 0; i < (timesteps / 2); i++) {
+            next(planets, nextplanets, planet_masses);
+            next(nextplanets, planets, planet_masses);
+        }
+    } else {
+        for (int i = 0; i < (timesteps / 2); i++) {
+            next_sequential(planets, nextplanets, planet_masses);
+            next_sequential(nextplanets, planets, planet_masses);
+        }
     }
+
     if (timesteps & 0x1) {
         next(planets, nextplanets, planet_masses);
     }
